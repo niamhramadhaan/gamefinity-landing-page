@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import Reveal from './Reveal'
 import { C, F, R, MAX_W } from './theme'
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const trustPoints = [
   'One integration across three modules. Pick what fits your app.',
@@ -10,78 +7,7 @@ const trustPoints = [
   'A team that has run this at community scale since 2017.',
 ]
 
-interface FormValues {
-  name: string
-  email: string
-  company: string
-  message: string
-}
-
-function validate(values: FormValues) {
-  const errors: Record<string, string> = {}
-  if (!values.name.trim()) errors.name = 'Please tell us your name.'
-  if (!values.email.trim()) errors.email = 'A work email lets us reply.'
-  else if (!EMAIL_RE.test(values.email.trim())) errors.email = 'That email address looks incomplete.'
-  if (!values.company.trim()) errors.company = 'Which app or company are we talking to?'
-  return errors
-}
-
-function Field({ id, label, type = 'text', value, onChange, onBlur, error, textarea, placeholder }: { id: string; label: string; type?: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; onBlur?: () => void; error?: string; textarea?: boolean; placeholder?: string }) {
-  const describedBy = error ? `${id}-error` : undefined
-  const base = {
-    width: '100%',
-    fontFamily: F.body,
-    fontSize: '15px',
-    color: C.navy,
-    background: C.white,
-    border: `1.5px solid ${error ? '#d1584f' : 'rgba(4,44,83,0.18)'}`,
-    borderRadius: R.input,
-    padding: '12px 14px',
-    outline: 'none',
-    transition: 'border-color 0.18s ease, box-shadow 0.18s ease',
-  }
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-      <label htmlFor={id} style={{ fontFamily: F.body, fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.9)' }}>
-        {label}
-      </label>
-      {textarea ? (
-        <textarea id={id} value={value} onChange={onChange} onBlur={onBlur} placeholder={placeholder} rows={4} aria-invalid={!!error} aria-describedby={describedBy} style={{ ...base, resize: 'vertical', minHeight: '104px' }} />
-      ) : (
-        <input id={id} type={type} value={value} onChange={onChange} onBlur={onBlur} placeholder={placeholder} aria-invalid={!!error} aria-describedby={describedBy} style={base} />
-      )}
-      {error && (
-        <span id={`${id}-error`} role="alert" style={{ fontFamily: F.body, fontSize: '13px', color: '#ffb4ac' }}>
-          {error}
-        </span>
-      )}
-    </div>
-  )
-}
-
 export default function Partner() {
-  const [values, setValues] = useState<FormValues>({ name: '', email: '', company: '', message: '' })
-  const [errors, setErrors] = useState<Record<string, string>>({})
-  const [touched, setTouched] = useState<Record<string, boolean>>({})
-  const [submitted, setSubmitted] = useState(false)
-
-  const setField = key => e => {
-    const next = { ...values, [key]: e.target.value }
-    setValues(next)
-    if (touched[key]) setErrors(validate(next))
-  }
-  const onBlur = key => () => {
-    setTouched(t => ({ ...t, [key]: true }))
-    setErrors(validate(values))
-  }
-  const handleSubmit = e => {
-    e.preventDefault()
-    const found = validate(values)
-    setErrors(found)
-    setTouched({ name: true, email: true, company: true })
-    if (Object.keys(found).length === 0) setSubmitted(true)
-  }
-
   return (
     <section id="partner" className="dot-grid partner-bg" style={{ borderTop: 'none' }}>
       <div style={{ maxWidth: MAX_W, margin: '0 auto', padding: 'clamp(72px, 10vw, 120px) 24px' }}>
@@ -158,34 +84,44 @@ export default function Partner() {
             background: 'rgba(255,255,255,0.05)',
             border: `1px solid ${C.lineOnDark}`,
             borderRadius: R.card,
-            padding: 'clamp(24px, 3vw, 34px)',
+            padding: 'clamp(32px, 4vw, 48px)',
+            textAlign: 'center',
           }}>
-            {submitted ? (
-              <div role="status" style={{ textAlign: 'center', padding: '20px 0' }}>
-                <div style={{ width: '52px', height: '52px', borderRadius: R.btn, background: 'rgba(55,138,221,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12.5L10 17.5L19 7" stroke={C.interactive} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 style={{ fontFamily: F.display, fontSize: '22px', fontWeight: 500, color: C.white, margin: '0 0 10px' }}>
-                  Thanks, {values.name.trim().split(' ')[0]}. We've got it.
-                </h3>
-                <p style={{ fontFamily: F.body, fontSize: '15px', lineHeight: 1.6, color: C.onDark, maxWidth: '38ch', margin: '0 auto' }}>
-                  Someone from the partnerships team will reply to {values.email.trim()} within two working days.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <Field id="name" label="Your name" value={values.name} onChange={setField('name')} onBlur={onBlur('name')} error={touched.name && errors.name} placeholder="Dewi Anggraini" />
-                <Field id="email" label="Work email" type="email" value={values.email} onChange={setField('email')} onBlur={onBlur('email')} error={touched.email && errors.email} placeholder="dewi@yourapp.id" />
-                <Field id="company" label="App or company" value={values.company} onChange={setField('company')} onBlur={onBlur('company')} error={touched.company && errors.company} placeholder="Ruangku Super App" />
-                <Field id="message" label="What are you hoping to add? (optional)" value={values.message} onChange={setField('message')} onBlur={onBlur('message')} textarea placeholder="We want more daily sessions on our rewards tab." />
-                <button type="submit" className="partner-submit">Start the conversation</button>
-                <p style={{ fontFamily: F.body, fontSize: '12px', color: C.onDarkFaint, margin: 0, textAlign: 'center' }}>
-                  We reply to every serious inquiry. No mailing lists.
-                </p>
-              </form>
-            )}
+            <div style={{ width: '56px', height: '56px', borderRadius: R.btn, background: 'rgba(55,138,221,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={C.interactive} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg>
+            </div>
+            <h3 style={{ fontFamily: F.display, fontSize: 'clamp(22px, 2.8vw, 28px)', fontWeight: 500, color: C.white, margin: '0 0 12px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+              Let's build together
+            </h3>
+            <p style={{ fontFamily: F.body, fontSize: '15px', lineHeight: 1.6, color: C.onDark, maxWidth: '32ch', margin: '0 auto 28px' }}>
+              Tell us about your app and what you'd like to add. We'll get back within two working days.
+            </p>
+            <a
+              href="https://gamefinity.id/contact-us"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontFamily: F.body,
+                fontSize: '15px',
+                fontWeight: 600,
+                color: C.white,
+                background: C.primary,
+                padding: '14px 28px',
+                borderRadius: R.btn,
+                textDecoration: 'none',
+                transition: 'background 0.18s ease, transform 0.1s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#2270bd' }}
+              onMouseLeave={e => { e.currentTarget.style.background = C.primary }}
+            >
+              Contact us
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </a>
           </Reveal>
         </div>
       </div>
@@ -216,28 +152,6 @@ export default function Partner() {
           height: 1px;
           background: linear-gradient(90deg, transparent, rgba(55,138,221,0.3) 40%, rgba(55,138,221,0.5) 50%, rgba(55,138,221,0.3) 60%, transparent);
         }
-        #partner input::placeholder,
-        #partner textarea::placeholder { color: rgba(4,44,83,0.4); }
-        #partner input:focus,
-        #partner textarea:focus {
-          border-color: ${C.accentBright} !important;
-          box-shadow: 0 0 0 3px rgba(59,158,255,0.28) !important;
-        }
-        .partner-submit {
-          font-family: ${F.body};
-          font-size: 15px;
-          font-weight: 600;
-          color: ${C.white};
-          background: ${C.primary};
-          border: none;
-          border-radius: ${R.btn};
-          padding: 14px 24px;
-          cursor: pointer;
-          margin-top: 4px;
-          transition: background 0.18s ease, transform 0.1s ease;
-        }
-        .partner-submit:hover { background: #2270bd; }
-        .partner-submit:active { transform: scale(0.985); }
         @media (max-width: 860px) {
           .partner-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
         }

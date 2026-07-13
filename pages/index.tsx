@@ -12,22 +12,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Gamefinity - Built with players. Built for platforms.</title>
-        <meta name="description" content="One entertainment engine for any app to embed: games, drama, and connection. The same content platform that grew Indonesia's most engaged gaming community." />
+        <title>Gamefinity: Gaming Media &amp; Creative Lab</title>
+        <meta name="description" content="Games, drama, and live chat — one embeddable entertainment engine for any app. Built by a gaming media and creative lab powering communities across Asia." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="https://biz.gamefinity.id/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#042C53" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Gamefinity - Built with players. Built for platforms." />
-        <meta property="og:description" content="One entertainment engine for any app to embed: games, drama, and connection." />
+        <meta property="og:title" content="Gamefinity: Gaming Media & Creative Lab" />
+        <meta property="og:description" content="Games, drama, and live chat — one embeddable entertainment engine for any app." />
         <meta property="og:image" content="https://picsum.photos/seed/gamefinity-og/1200/630" />
         <meta property="og:url" content="https://gamefinity.id" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Gamefinity - Built with players. Built for platforms." />
-        <meta name="twitter:description" content="One entertainment engine for any app to embed: games, drama, and connection." />
+        <meta name="twitter:title" content="Gamefinity: Gaming Media & Creative Lab" />
+        <meta name="twitter:description" content="Games, drama, and live chat — one embeddable entertainment engine for any app." />
         <meta name="twitter:image" content="https://picsum.photos/seed/gamefinity-og/1200/630" />
       </Head>
 

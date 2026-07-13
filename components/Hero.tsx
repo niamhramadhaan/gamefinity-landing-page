@@ -188,7 +188,7 @@ export default function Hero() {
             maxWidth: '480px',
             opacity: 0,
           }}>
-            Games, drama, and live chat — one integration to keep your users engaged.
+            A gaming media and creative lab — building the tools that keep players inside your app.
           </p>
 
           <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: 0 }}>

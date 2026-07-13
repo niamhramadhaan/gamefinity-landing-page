@@ -80,7 +80,7 @@ export default function NewsTeaser() {
           </Reveal>
           <Reveal delay={1} className="news-arrows" style={{ display: 'flex', gap: '8px', flexShrink: 0, paddingBottom: '4px' }}>
             <button onClick={() => scroll('left')} aria-label="Scroll left" style={{
-              width: 40, height: 40, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease, border-color 0.18s ease', padding: 0,
+              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease, border-color 0.18s ease', padding: 0,
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.lineOnDark }}
@@ -88,7 +88,7 @@ export default function NewsTeaser() {
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
             <button onClick={() => scroll('right')} aria-label="Scroll right" style={{
-              width: 40, height: 40, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease, border-color 0.18s ease', padding: 0,
+              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease, border-color 0.18s ease', padding: 0,
             }}
               onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.lineOnDark }}
@@ -103,11 +103,12 @@ export default function NewsTeaser() {
           gap: '20px',
           overflowX: 'auto',
           scrollSnapType: 'x mandatory',
+          scrollPaddingLeft: '24px',
           WebkitOverflowScrolling: 'touch',
           paddingBottom: '8px',
         }}>
           {articles.map((a, i) => (
-            <Reveal key={a.href} delay={i} style={{ borderRadius: R.card, overflow: 'hidden', flex: '0 0 310px', scrollSnapAlign: 'start' }}>
+            <Reveal key={a.href} delay={i} style={{ borderRadius: R.card, overflow: 'hidden', flex: '0 0 340px', scrollSnapAlign: 'start' }}>
               <a href={a.href} target="_blank" rel="noopener noreferrer" className="news-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
                 <div style={{
                   background: 'rgba(255,255,255,0.05)',
@@ -228,9 +229,8 @@ export default function NewsTeaser() {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .news-scroll::-webkit-scrollbar { height: 4px; }
-        .news-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 2px; }
-        .news-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+        .news-scroll::-webkit-scrollbar { display: none; }
+        .news-scroll { scrollbar-width: none; }
         .news-card:hover .news-img { transform: scale(1.05); }
         .news-card:hover .news-arrow { transform: translateX(4px); }
         @media (max-width: 640px) {

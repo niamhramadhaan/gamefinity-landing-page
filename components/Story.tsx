@@ -1,47 +1,71 @@
 import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
 import { C, F, R, MAX_W } from './theme'
+import PlaceholderImage from './PlaceholderImage'
+
+const H = {
+  num: (text: string) => <strong style={{ color: C.interactive, fontWeight: 600 }}>{text}</strong>,
+  brand: (text: string) => <strong style={{ fontWeight: 600 }}>{text}</strong>,
+}
 
 const milestones = [
   {
-    year: '2017',
-    title: 'A guides blog finds its readers',
-    body: 'Gamefinity starts as a walkthrough and strategy blog. Within a year it clears 200,000 monthly readers.',
-    seed: 'gf-story-2017-guides-desk',
-    alt: 'The Gamefinity guides team at their desks, 2017',
-    caption: '2017, the Gamefinity guides desk',
+    year: '2019',
+    title: 'Gamefinity founded',
+    body: <>What started as a small gaming community in Indonesia quickly proved there was a massive, underserved audience of players looking for more than just another forum.</>,
+    seed: 'gf-story-2019-founded',
+    alt: 'The founding team of Gamefinity, 2019',
+    caption: '2019, where it all began',
   },
   {
-    year: '2019',
-    title: 'Elite Squad forms',
-    body: 'School and campus esports teams turn readers into a community that shows up, competes, and stays.',
-    seed: 'gf-story-2019-elite-squad',
-    alt: 'The first Elite Squad esports line-up, 2019',
-    caption: '2019, the first Elite Squad line-up',
+    year: '2020',
+    title: 'Top-up platform launches',
+    body: <>We launched a top-up hub with {H.num('1,000+')} digital products — game currencies, mobile credit, and entertainment vouchers. What began as a feature became a daily habit for the community, and a new revenue stream for the platform.</>,
+    seed: 'gf-story-2020-topup',
+    alt: 'Gamefinity top-up platform dashboard, 2020',
+    caption: '2020, 1,000+ digital products live',
+    cta: { label: 'Try top-up', href: 'https://topup.gamefinity.id' },
   },
   {
     year: '2021',
-    title: 'Mini Games launches',
-    body: 'Instant, downloadless HTML5 play. The library grows past 20,000 titles across 20+ genres.',
-    seed: 'gf-story-2021-mini-games',
-    alt: 'Mini Games launch day, 2021',
-    caption: '2021, Mini Games launch day',
+    title: 'Content & Media arm starts',
+    body: <>We started covering the games and tournaments our community actually cared about. The editorial arm grew fast — now reaching {H.num('1.2M+')} monthly visitors and {H.num('140K+')} social followers across platforms, all organic.</>,
+    seed: 'gf-story-2021-content',
+    alt: 'Gamefinity content team at work, 2021',
+    caption: '2021, the content engine kicks in',
+    cta: { label: 'Read the news', href: '#news' },
+  },
+  {
+    year: '2022',
+    title: 'Campus Edition tournament',
+    body: <>We partnered with {H.brand('ESPL')} and {H.brand('Maybank')} to run the Campus Edition — an online tournament that brought competitive gaming to universities across Indonesia. {H.num('60+')} players competed, and {H.num('150+')} new users joined the platform through the event.</>,
+    seed: 'gf-story-2022-campus',
+    alt: 'Campus esports tournament, 2022',
+    caption: '2022, Campus Edition with ESPL & Maybank',
   },
   {
     year: '2023',
-    title: 'Drama and live social arrive',
-    body: 'Mini Cinema and Mini Chatto add shortform video and real-time voice, video, and AI chat.',
-    seed: 'gf-story-2023-cinema-set',
-    alt: 'On set for a Mini Cinema shoot, 2023',
-    caption: '2023, on set for a Mini Cinema shoot',
+    title: 'Ramadan Weekly Series',
+    body: <>During Ramadan, we ran a weekly series with {H.brand('Tel-U Esports')} and {H.brand('XD Project')}, backed by {H.brand("Telkomsel's")} GamesMax package. {H.num('5,000+')} players showed up, generating {H.num('IDR 23.5M')} in purchase value — proof that community-driven events convert.</>,
+    seed: 'gf-story-2023-ramadan',
+    alt: 'Ramadan Weekly Series event, 2023',
+    caption: '2023, Ramadan series with Telkomsel',
   },
   {
-    year: '2026',
-    title: 'The engine opens up',
-    body: 'The same content stack that grew the community, packaged for any platform to embed.',
-    seed: 'gf-story-2026-engine-team',
-    alt: 'The Gamefinity engine team in Jakarta, 2026',
-    caption: '2026, the engine team in Jakarta',
+    year: '2024–2025',
+    title: 'Elite Squad',
+    body: <>We took esports into schools and universities with the Elite Squad program — blending competition with education. {H.num('144')} teams formed, {H.num('720')} players competed, and {H.num('600+')} participants joined the broader community events, drawing {H.num('1,100')} visitors to our live activations.</>,
+    seed: 'gf-story-2024-elitesquad',
+    alt: 'Gamefinity Elite Squad event, 2024',
+    caption: '2024–2025, Elite Squad goes nationwide',
+  },
+  {
+    year: '2025–2026',
+    title: 'Content Toolkit launches',
+    body: <>Everything we built for ourselves — {H.brand('Mini Games')}, {H.brand('Mini Cinema')}, and {H.brand('Mini Chatto')} — is now packaged as a content toolkit any platform can embed. No app store, no install friction. Just the engine that grew Indonesia's gaming community, ready to grow yours.</>,
+    seed: 'gf-story-2025-toolkit',
+    alt: 'Content Toolkit launch, 2025',
+    caption: '2025–2026, the toolkit opens up',
   },
 ]
 
@@ -73,10 +97,16 @@ function Scrolly() {
         <div className="era" key={active}>
           <div className="era-year tnum">{m.year}</div>
           <div className="era-photo">
-            <img src={`https://picsum.photos/seed/${m.seed}/560/440`} alt={m.alt} loading="lazy" />
+            <PlaceholderImage seed={m.seed} alt={m.alt} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             <span className="era-photo-label">{m.caption}</span>
           </div>
           <div className="era-title">{m.title}</div>
+            {m.cta && (
+              <a href={m.cta.href} className="era-cta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" /><line x1="12" y1="18" x2="12" y2="18.01" /></svg>
+                <span>{m.cta.label}</span>
+              </a>
+            )}
         </div>
       </div>
 
@@ -91,8 +121,14 @@ function Scrolly() {
             <div className="ms-year tnum">{ms.year}</div>
             <h3 className="ms-title">{ms.title}</h3>
             <p className="ms-body">{ms.body}</p>
+            {ms.cta && (
+              <a href={ms.cta.href} className="ms-cta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2" /><line x1="10" y1="6" x2="18" y2="6" /><line x1="10" y1="10" x2="18" y2="10" /><line x1="10" y1="14" x2="14" y2="14" /></svg>
+                <span>{ms.cta.label}</span>
+              </a>
+            )}
             <div className="ms-photo-mobile">
-              <img src={`https://picsum.photos/seed/${ms.seed}/640/360`} alt={ms.alt} loading="lazy" />
+              <PlaceholderImage seed={ms.seed} alt={ms.alt} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
               <span>{ms.caption}</span>
             </div>
           </li>
@@ -123,9 +159,9 @@ export default function Story() {
             We didn't set out to build a platform. We set out to build a crowd.
           </h2>
           <p style={{ fontFamily: F.body, fontSize: '17px', lineHeight: 1.7, color: C.onDark, maxWidth: '58ch', margin: 0 }}>
-            For nearly a decade we've made things Indonesian gamers actually want to spend time in: guides,
-            tournaments, games, drama, and chat. Engagement was never a line on a slide. It was the thing we
-            earned every day to keep the community around. That engine is what we're opening up now.
+            Since 2019 we've built what Indonesian gamers actually want to spend time in: tournaments,
+            top-ups, games, drama, and chat. Engagement was never a metric. It was the thing we
+            earned every day. That engine is what we're opening up now.
           </p>
         </Reveal>
 
@@ -168,6 +204,16 @@ export default function Story() {
         }
         .era-photo-label { position: relative; z-index: 1; font-family: ${F.mono}; font-size: 11px; color: rgba(255,255,255,0.82); line-height: 1.6; }
         .era-title { font-family: ${F.display}; font-size: 18px; font-weight: 600; color: ${C.white}; }
+        .era-cta {
+          display: inline-flex; align-items: center; gap: 5px;
+          margin-top: 14px; font-family: ${F.body}; font-size: 12px; font-weight: 600;
+          color: ${C.navy}; text-decoration: none;
+          background: ${C.interactive};
+          padding: 6px 12px;
+          border-radius: 6px;
+          transition: background 0.18s ease, transform 0.1s ease;
+        }
+        .era-cta:hover { background: #5ba3e6; transform: translateY(-1px); }
 
         .scrolly-list {
           list-style: none;
@@ -187,7 +233,7 @@ export default function Story() {
         }
         .scrolly-list > * { position: relative; z-index: 1; }
         .ms {
-          min-height: 48vh;
+          min-height: 40vh;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -200,6 +246,16 @@ export default function Story() {
         .ms.is-active .ms-year { color: ${C.interactive}; }
         .ms-title { font-family: ${F.display}; font-size: 22px; font-weight: 600; color: ${C.white}; letter-spacing: -0.01em; margin: 0 0 10px; }
         .ms-body { font-family: ${F.body}; font-size: 15px; line-height: 1.65; color: ${C.onDark}; max-width: 46ch; margin: 0; }
+        .ms-cta {
+          display: inline-flex; align-items: center; gap: 5px;
+          margin-top: 14px; font-family: ${F.body}; font-size: 12px; font-weight: 600;
+          color: ${C.navy}; text-decoration: none;
+          background: ${C.interactive};
+          padding: 6px 12px;
+          border-radius: 6px;
+          transition: background 0.18s ease, transform 0.1s ease;
+        }
+        .ms-cta:hover { background: #5ba3e6; transform: translateY(-1px); }
         .ms-photo-mobile { display: none; }
 
         @media (prefers-reduced-motion: no-preference) {

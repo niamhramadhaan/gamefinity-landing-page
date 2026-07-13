@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import PlaceholderImage from './PlaceholderImage'
 import { C, F, R, MAX_W } from './theme'
 
 const PhoneIcon = () => (
@@ -29,76 +30,6 @@ const MegaphoneIcon = () => (
   </svg>
 )
 
-const BillingMockup = () => (
-  <div style={{
-    background: 'rgba(4,44,83,0.04)',
-    border: `1px solid ${C.line}`,
-    borderRadius: R.card,
-    overflow: 'hidden',
-  }}>
-    <svg width="100%" viewBox="0 0 440 180" fill="none" aria-hidden="true" style={{ display: 'block' }}>
-      <rect width="440" height="180" fill="rgba(4,44,83,0.02)" />
-      <rect x="160" y="24" width="120" height="132" rx="16" stroke={C.primary} strokeWidth="1.6" fill="rgba(24,95,165,0.04)" />
-      <rect x="176" y="52" width="88" height="12" rx="4" fill="rgba(24,95,165,0.15)" />
-      <rect x="186" y="76" width="68" height="8" rx="4" fill="rgba(24,95,165,0.08)" />
-      <rect x="186" y="92" width="48" height="8" rx="4" fill="rgba(24,95,165,0.06)" />
-      <rect x="176" y="120" width="88" height="28" rx="6" fill={C.primary} />
-      <text x="220" y="138" textAnchor="middle" fill={C.white} fontSize="10" fontFamily="var(--font-mono)">PAY</text>
-      <path d="M120 80 C110 70, 90 80, 80 70" stroke={C.interactive} strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
-      <path d="M120 92 C110 82, 85 92, 70 82" stroke={C.interactive} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
-      <path d="M320 80 C330 70, 350 80, 360 70" stroke={C.interactive} strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
-      <path d="M320 92 C330 82, 355 92, 370 82" stroke={C.interactive} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
-    </svg>
-  </div>
-)
-
-const PublishingMockup = () => (
-  <div style={{
-    background: 'rgba(4,44,83,0.04)',
-    border: `1px solid ${C.line}`,
-    borderRadius: R.card,
-    overflow: 'hidden',
-  }}>
-    <svg width="100%" viewBox="0 0 440 180" fill="none" aria-hidden="true" style={{ display: 'block' }}>
-      <rect width="440" height="180" fill="rgba(4,44,83,0.02)" />
-      <circle cx="220" cy="90" r="56" stroke={C.primary} strokeWidth="1.6" fill="rgba(24,95,165,0.04)" />
-      <ellipse cx="220" cy="90" rx="24" ry="56" stroke={C.primary} strokeWidth="1" opacity="0.4" />
-      <line x1="164" y1="72" x2="276" y2="72" stroke={C.primary} strokeWidth="1" opacity="0.3" />
-      <line x1="164" y1="108" x2="276" y2="108" stroke={C.primary} strokeWidth="1" opacity="0.3" />
-      <circle cx="200" cy="74" r="6" fill={C.interactive} opacity="0.5" />
-      <circle cx="244" cy="82" r="5" fill={C.primary} opacity="0.4" />
-      <circle cx="216" cy="104" r="4.5" fill={C.interactive} opacity="0.35" />
-      <circle cx="100" cy="50" r="3" fill={C.primary} opacity="0.15" />
-      <circle cx="340" cy="130" r="3" fill={C.primary} opacity="0.15" />
-      <circle cx="80" cy="140" r="2" fill={C.interactive} opacity="0.1" />
-      <circle cx="360" cy="40" r="2" fill={C.interactive} opacity="0.1" />
-    </svg>
-  </div>
-)
-
-const MarketingMockup = () => (
-  <div style={{
-    background: 'rgba(4,44,83,0.04)',
-    border: `1px solid ${C.line}`,
-    borderRadius: R.card,
-    overflow: 'hidden',
-  }}>
-    <svg width="100%" viewBox="0 0 440 180" fill="none" aria-hidden="true" style={{ display: 'block' }}>
-      <rect width="440" height="180" fill="rgba(4,44,83,0.02)" />
-      <circle cx="220" cy="90" r="28" stroke={C.primary} strokeWidth="1.6" fill="rgba(24,95,165,0.06)" />
-      <circle cx="220" cy="90" r="48" stroke={C.primary} strokeWidth="1" opacity="0.3" fill="none" />
-      <circle cx="220" cy="90" r="68" stroke={C.primary} strokeWidth="0.8" opacity="0.15" fill="none" />
-      <path d="M210 82 L230 82 L226 76 L234 76 L222 94 L226 88 L218 88 Z" fill={C.primary} opacity="0.6" />
-      <circle cx="150" cy="60" r="5" fill={C.interactive} opacity="0.3" />
-      <circle cx="290" cy="120" r="4" fill={C.primary} opacity="0.25" />
-      <circle cx="130" cy="130" r="3" fill={C.interactive} opacity="0.15" />
-      <circle cx="310" cy="55" r="3" fill={C.primary} opacity="0.15" />
-      <line x1="150" y1="60" x2="220" y2="90" stroke={C.interactive} strokeWidth="0.6" opacity="0.2" />
-      <line x1="290" y1="120" x2="220" y2="90" stroke={C.primary} strokeWidth="0.6" opacity="0.15" />
-    </svg>
-  </div>
-)
-
 const Chips = ({ items }) => (
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
     {items.map(t => (
@@ -120,21 +51,21 @@ const Chips = ({ items }) => (
 const cards = [
   {
     Icon: PhoneIcon,
-    Mockup: BillingMockup,
+    seed: 'gf-growth-carrier-billing',
     title: 'Direct Carrier Billing',
     body: 'Let users pay with mobile credit. In a market where 97.4M adults are unbanked but 297M use mobile credit, carrier billing unlocks transactions cards and wallets cannot.',
     chips: ['97.4M unbanked', '297M credit users', '6 telco partners'],
   },
   {
     Icon: GlobeIcon,
-    Mockup: PublishingMockup,
+    seed: 'gf-growth-app-publishing',
     title: 'App Publishing Partner',
     body: 'End-to-end market entry for global games and entertainment apps. We handle distribution agreements, IP registration, localization, and payment integration.',
     chips: ['Market entry', 'Distribution', 'IP registration', 'Localization'],
   },
   {
     Icon: MegaphoneIcon,
-    Mockup: MarketingMockup,
+    seed: 'gf-growth-marketing-360',
     title: 'Marketing 360',
     body: 'Full-funnel growth from creator partnerships to community management. Talent House matching, content production, targeted campaigns, and engagement at scale.',
     chips: ['Creator matching', 'Content production', 'Targeted campaigns'],
@@ -167,24 +98,28 @@ export default function GrowthSolutions() {
         </Reveal>
 
         <div className="growth-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px' }}>
-          {cards.map(({ Icon, Mockup, title, body, chips }) => (
+          {cards.map(({ Icon, seed, title, body, chips }) => (
             <Reveal key={title} delay={1} style={{ borderRadius: R.card, overflow: 'hidden' }}>
               <div className="lift" style={{
                 background: C.white,
                 border: `1px solid ${C.line}`,
-                padding: 'clamp(22px, 2.6vw, 30px)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '18px',
                 height: '100%',
               }}>
-                <Mockup />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span style={{ color: C.primary, display: 'flex' }}><Icon /></span>
+                <PlaceholderImage
+                  seed={seed}
+                  alt={title}
+                  style={{ width: '100%', aspectRatio: '16 / 9', borderRadius: 0 }}
+                />
+                <div style={{ padding: 'clamp(22px, 2.6vw, 30px)', display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ color: C.primary, display: 'flex' }}><Icon /></span>
+                  </div>
+                  <h3 style={{ fontFamily: F.display, fontSize: '21px', fontWeight: 600, color: C.navy, letterSpacing: '-0.01em', margin: 0, lineHeight: 1.2 }}>{title}</h3>
+                  <p style={{ fontFamily: F.body, fontSize: '14.5px', lineHeight: 1.6, color: C.slate, margin: 0, flex: 1 }}>{body}</p>
+                  <Chips items={chips} />
                 </div>
-                <h3 style={{ fontFamily: F.display, fontSize: '21px', fontWeight: 600, color: C.navy, letterSpacing: '-0.01em', margin: 0, lineHeight: 1.2 }}>{title}</h3>
-                <p style={{ fontFamily: F.body, fontSize: '14.5px', lineHeight: 1.6, color: C.slate, margin: 0, flex: 1 }}>{body}</p>
-                <Chips items={chips} />
               </div>
             </Reveal>
           ))}
@@ -199,21 +134,23 @@ export default function GrowthSolutions() {
         .growth-bg::before {
           content: '';
           position: absolute;
-          right: 0;
+          right: -8%;
           top: 35%;
           transform: translateY(-50%);
-          width: 40%;
-          height: 80%;
-          opacity: 0.10;
-          background-image: url('/indonesia-map.svg');
+          width: 65%;
+          height: 120%;
+          opacity: 0.18;
+          background-image: url('https://i.postimg.cc/fTV3nXFs/pngfind-com-indonesia-map-png-5081439.png');
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
           pointer-events: none;
+          filter: contrast(2.5) brightness(1.2);
+          image-rendering: optimizeQuality;
         }
         @media (max-width: 860px) {
           .growth-grid { grid-template-columns: 1fr !important; }
-          .growth-bg::before { width: 70%; right: -10%; opacity: 0.07; }
+          .growth-bg::before { width: 110%; right: -20%; opacity: 0.12; height: 100%; top: 30%; }
         }
       ` }} />
     </section>

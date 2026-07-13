@@ -12,14 +12,15 @@ const LogoSVG = () => (
 
 // On-page destinations, plus the live product subdomains under a dropdown.
 const sectionLinks = [
+  { label: 'News', href: '#news', id: 'news' },
   { label: 'The toolkit', href: '#toolkit', id: 'toolkit' },
   { label: 'Our story', href: '#how-we-got-here', id: 'how-we-got-here' },
 ]
 
 const productLinks = [
-  { label: 'Mini Games', href: 'https://mini-games.gamefinity.id', note: '20K+ instant titles' },
-  { label: 'Mini Cinema', href: 'https://mini-cinema.gamefinity.id', note: 'bite-size drama' },
-  { label: 'Mini Chatto', href: 'https://mini-chatto.gamefinity.id', note: 'voice · video · AI' },
+  { label: 'Mini Games', href: 'https://mini-games.gamefinity.id', note: '20K+ instant titles', color: '#6ee7b7' },
+  { label: 'Mini Cinema', href: 'https://mini-cinema.gamefinity.id', note: 'bite-size drama', color: '#a78bfa' },
+  { label: 'Mini Chatto', href: 'https://mini-chatto.gamefinity.id', note: 'voice · video · AI', color: '#378ADD' },
 ]
 
 export default function Navbar() {
@@ -37,7 +38,7 @@ export default function Navbar() {
 
   // Scrollspy: highlight the nav item for the section currently in view.
   useEffect(() => {
-    const ids = ['toolkit', 'how-we-got-here', 'partner']
+    const ids = ['toolkit', 'how-we-got-here', 'news', 'partner']
     const els = ids.map(id => document.getElementById(id)).filter(Boolean)
     if (!els.length || typeof IntersectionObserver === 'undefined') return
     const io = new IntersectionObserver(
@@ -88,18 +89,6 @@ export default function Navbar() {
           </Link>
 
           <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            {sectionLinks.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="nav-link"
-                aria-current={active === link.id ? 'true' : undefined}
-                data-active={active === link.id ? 'true' : undefined}
-              >
-                {link.label}
-              </a>
-            ))}
-
             <div
               style={{ position: 'relative' }}
               onMouseEnter={() => setProductsOpen(true)}
@@ -123,16 +112,20 @@ export default function Navbar() {
                   role="menu"
                   style={{
                     position: 'absolute',
-                    top: '100%',
-                    right: 0,
-                    background: C.white,
-                    borderRadius: '12px',
-                    border: `1px solid ${C.line}`,
-                    padding: '8px',
-                    minWidth: '230px',
-                    marginTop: '8px',
+                    top: 'calc(100% - 8px)',
+                    left: 0,
+                    background: 'rgba(255,255,255,0.95)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    boxShadow: '0 8px 32px rgba(4,44,83,0.12), 0 2px 8px rgba(0,0,0,0.06)',
+                    borderRadius: '14px',
+                    padding: '14px 8px 8px',
+                    minWidth: '260px',
                   }}
                 >
+                  <div style={{ padding: '8px 14px 6px', fontFamily: F.mono, fontSize: '10px', color: C.slateLight, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    Our products
+                  </div>
                   {productLinks.map(item => (
                     <a
                       key={item.label}
@@ -142,13 +135,39 @@ export default function Navbar() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <span style={{ fontWeight: 600, color: C.navy }}>{item.label}</span>
-                      <span style={{ fontFamily: F.mono, fontSize: '11px', color: C.primary }}>{item.note}</span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.color, flexShrink: 0 }} />
+                        <span style={{ fontWeight: 600, color: C.navy }}>{item.label}</span>
+                      </span>
+                      <span style={{ fontFamily: F.mono, fontSize: '11px', color: C.primary, paddingLeft: '16px' }}>{item.note}</span>
                     </a>
                   ))}
                 </div>
               )}
             </div>
+
+            {sectionLinks.filter(l => l.id !== 'news').map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="nav-link"
+                aria-current={active === link.id ? 'true' : undefined}
+                data-active={active === link.id ? 'true' : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+
+            <div style={{ flex: 1 }} />
+
+            <a
+              href="#news"
+              className="nav-link nav-link--highlight"
+              aria-current={active === 'news' ? 'true' : undefined}
+              data-active={active === 'news' ? 'true' : undefined}
+            >
+              News
+            </a>
           </div>
 
           <a href="#partner" className="nav-cta desktop-nav" data-active={active === 'partner' ? 'true' : undefined}>
@@ -260,6 +279,12 @@ export default function Navbar() {
           border-radius: 2px;
           background: ${C.primary};
         }
+        .nav-link--highlight {
+          font-weight: 600;
+          color: ${C.primary};
+          background: rgba(55,138,221,0.08);
+        }
+        .nav-link--highlight:hover { background: rgba(55,138,221,0.14); }
         .menu-item {
           display: flex;
           flex-direction: column;

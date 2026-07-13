@@ -195,7 +195,7 @@ function SupportCallout() {
         <div className="embed-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.9fr) minmax(0,1.1fr)', gap: '36px', alignItems: 'center' }}>
           <div>
             <h3 style={{ fontFamily: F.display, fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 500, color: C.white, letterSpacing: '-0.02em', margin: '0 0 16px', lineHeight: 1.15 }}>
-              You get a team, not just a script tag.
+              Every integration gets a team behind it.
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '13px' }}>
               {SUPPORT_POINTS.map(point => (
@@ -257,6 +257,18 @@ export default function Toolkit() {
                 <div style={{ marginBottom: '22px' }}>
                   <Chips onDark items={['20+ genres', 'Unity / Cocos / Laya', 'Leaderboards + events']} />
                 </div>
+                <a href="https://mini-games.gamefinity.id" target="_blank" rel="noreferrer" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '6px',
+                  fontFamily: F.body, fontSize: '14px', fontWeight: 600,
+                  color: C.interactive, textDecoration: 'none',
+                  transition: 'opacity 0.15s ease',
+                }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                >
+                  Try Mini Games
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </a>
               </div>
               <GamesMockup />
             </div>
@@ -271,14 +283,16 @@ export default function Toolkit() {
               body: 'Vertical, mobile-first entertainment built for attention. Autoplay, cliffhangers, and binge trays keep the next episode one tap away.',
               chips: ['Vertical player', '30s to 15min', 'Watch-time analytics'],
               Mockup: CinemaMockup,
+              href: 'https://mini-cinema.gamefinity.id',
             },
             {
               Icon: ChattoIcon, tag: 'Mini Chatto', title: 'A live social layer for any screen',
               body: 'Real-time rooms with voice, video, and an AI companion. Drop moderated, low-latency social into any app and let it scale.',
               chips: ['Voice + video rooms', 'AI personas', 'Moderation tooling'],
               Mockup: ChattoMockup,
+              href: 'https://mini-chatto.gamefinity.id',
             },
-          ].map(({ Icon, tag, title, body, chips, Mockup }) => (
+          ].map(({ Icon, tag, title, body, chips, Mockup, href }) => (
             <Reveal key={tag} delay={1} style={{
               borderRadius: R.card,
               overflow: 'hidden',
@@ -298,6 +312,18 @@ export default function Toolkit() {
                 <h3 style={{ fontFamily: F.display, fontSize: '21px', fontWeight: 600, color: C.navy, letterSpacing: '-0.01em', margin: 0, lineHeight: 1.2 }}>{title}</h3>
                 <p style={{ fontFamily: F.body, fontSize: '14.5px', lineHeight: 1.6, color: C.slate, margin: 0 }}>{body}</p>
                 <Chips items={chips} />
+                <a href={href} target="_blank" rel="noreferrer" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '6px',
+                  fontFamily: F.body, fontSize: '14px', fontWeight: 600,
+                  color: C.primary, textDecoration: 'none',
+                  transition: 'opacity 0.15s ease',
+                }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}
+                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                >
+                  Try {tag}
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </a>
               </div>
             </Reveal>
           ))}

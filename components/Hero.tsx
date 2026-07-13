@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { C, F, R } from './theme'
 import CountUp from './CountUp'
 import { spotHandlers, Spot } from './interactions'
+import PlaceholderImage from './PlaceholderImage'
 
 const PARTNER_LOGOS = [
   { name: 'Indosat', src: '/logos/indosat.svg' },
   { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
   { name: 'XLSMART', src: '/logos/xlsmart.svg' },
   { name: 'AXIS', src: '/logos/axis.svg' },
-  { name: 'Maybank', src: '' },
+  { name: 'Maybank', src: '/logos/maybank.png' },
   { name: 'Acer', src: '/logos/acer.svg' },
-  { name: 'Edifier', src: '/logos/edifier.svg' },
+  { name: 'Edifier', src: '' },
   { name: 'Jungleland', src: '' },
   { name: 'Gopay Arena', src: '/logos/gopay.svg' },
   { name: 'Teraskota', src: '/logos/teraskota.png' },
@@ -22,27 +23,26 @@ const PARTNER_LOGOS = [
   { name: 'Battle of Guardians', src: '' },
   { name: 'ESPL', src: '/logos/espl.png' },
   { name: 'Steam', src: '/logos/steam.svg' },
-  { name: 'Garena', src: '' },
+  { name: 'Garena', src: '/logos/garena.svg' },
   { name: 'Tencent', src: '/logos/tencent.svg' },
-  { name: 'Zepetto', src: '/logos/zepetto.png' },
+  { name: 'Zepetto', src: '/logos/zepetto.svg' },
   { name: 'Megaxus', src: '/logos/megaxus.png' },
-  { name: 'Point Blank', src: '' },
+  { name: 'Point Blank', src: '/logos/pointblank.png' },
 ]
 
 function CompactLogoTile({ name, src }) {
   const [failed, setFailed] = useState(!src)
-  const [loaded, setLoaded] = useState(false)
   return (
     <div className="compact-logo-tile" data-tooltip={name} style={{
       position: 'relative',
-      overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flex: '0 0 auto',
-      minWidth: '60px',
-      padding: '8px 10px',
-      background: 'rgba(4,44,83,0.04)',
+      width: '120px',
+      height: '52px',
+      padding: '12px 16px',
+      background: 'rgba(4,44,83,0.06)',
       borderRadius: R.card,
       transition: 'background 0.2s ease',
       cursor: 'default',
@@ -52,18 +52,20 @@ function CompactLogoTile({ name, src }) {
           src={src}
           alt={`${name} logo`}
           loading="lazy"
-          onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
-          style={{ height: '14px', width: 'auto', maxWidth: '100px', objectFit: 'contain', display: 'block', opacity: loaded ? 0.6 : 0, transition: 'opacity 0.3s ease' }}
+          style={{ height: '28px', width: 'auto', maxWidth: '88px', objectFit: 'contain', display: 'block', opacity: 0.55, transition: 'opacity 0.3s ease' }}
         />
       ) : (
         <span style={{
           fontFamily: F.display,
           fontWeight: 600,
-          fontSize: '10px',
+          fontSize: '11px',
           letterSpacing: '-0.01em',
-          color: 'rgba(4,44,83,0.4)',
+          color: 'rgba(4,44,83,0.5)',
           whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          maxWidth: '88px',
         }}>
           {name}
         </span>
@@ -72,32 +74,28 @@ function CompactLogoTile({ name, src }) {
   )
 }
 
-// Community proof mosaic: real community/event photography (picsum stand-ins,
+// Community proof mosaic: real community/event photography (placeholder stand-ins,
 // navy-duotone) interleaved with two real stat tiles. Grounds the headline claim.
 function Photo({ seed, alt, caption = '', className }) {
   return (
-    <div className={className} style={{
-      position: 'relative',
-      overflow: 'hidden',
-      borderRadius: R.card,
-      border: `1px solid ${C.line}`,
-      display: 'flex',
-      alignItems: 'flex-end',
-      padding: '14px',
-    }}>
-      <img
-        src={`https://picsum.photos/seed/${seed}/600/700`}
-        alt={alt}
-        loading="lazy"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.35) contrast(1.03)' }}
-      />
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(4,44,83,0.45)' }} />
+    <PlaceholderImage
+      seed={seed}
+      alt={alt}
+      className={className}
+      style={{
+        borderRadius: R.card,
+        border: `1px solid ${C.line}`,
+        display: 'flex',
+        alignItems: 'flex-end',
+        padding: '14px',
+      }}
+    >
       {caption && (
         <span style={{ position: 'relative', fontFamily: F.mono, fontSize: '10px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5 }}>
           {caption}
         </span>
       )}
-    </div>
+    </PlaceholderImage>
   )
 }
 
@@ -161,7 +159,7 @@ export default function Hero() {
               textTransform: 'uppercase',
               marginBottom: '24px',
             }}>
-              Indonesia's #1 gaming community
+              Indonesia's gaming community
             </span>
           </div>
 
@@ -176,8 +174,8 @@ export default function Hero() {
             textWrap: 'balance',
             opacity: 0,
           }}>
-            We built Indonesia's most engaged gaming community.{' '}
-            <span style={{ color: C.primary, fontWeight: 600 }}>Now we're giving you the engine.</span>
+            The platform Indonesian gamers{' '}
+            <span style={{ color: C.primary, fontWeight: 600 }}>already trust.</span>
           </h1>
 
           <p className="animate-fade-in-up animation-delay-200" style={{
@@ -190,7 +188,7 @@ export default function Hero() {
             maxWidth: '480px',
             opacity: 0,
           }}>
-            The content engine that grew a nationwide esports community, now packaged for any platform to embed.
+            Seven years in the market. One integration for any app that wants to keep players engaged.
           </p>
 
           <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: 0 }}>
@@ -219,13 +217,13 @@ export default function Hero() {
               seed="gf-hero-campus-tournament"
               alt="A packed campus esports tournament crowd in Indonesia"
             />
-            <Stat className="m-c" value={9} decimals={0} suffix=" yrs" label="Building for Indonesian players" />
+            <Stat className="m-c" value={7} decimals={0} suffix="+ Years" label="Building for Indonesian players" />
             <Photo
               className="m-d"
               seed="gf-hero-players-live"
               alt="Young Indonesian gamers competing at a live Gamefinity event"
             />
-            <Stat className="m-e" value={1.2} decimals={1} suffix="M+" label="Monthly visitors" />
+            <Stat className="m-e" value={1.2} decimals={1} suffix="M+" label="Monthly active users across platforms" />
           </div>
         </div>
 
@@ -237,7 +235,7 @@ export default function Hero() {
           <span style={{
             display: 'block',
             fontFamily: F.mono,
-            fontSize: '10px',
+          fontSize: '12px',
             fontWeight: 500,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
@@ -255,8 +253,8 @@ export default function Hero() {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .compact-logo-tile:hover { background: rgba(4,44,83,0.08); }
-        .compact-logo-tile:hover img { opacity: 1 !important; }
+        .compact-logo-tile:hover { background: rgba(4,44,83,0.1); }
+        .compact-logo-tile:hover img { opacity: 0.85 !important; }
         .compact-logo-tile[data-tooltip]::after {
           content: attr(data-tooltip);
           position: absolute;

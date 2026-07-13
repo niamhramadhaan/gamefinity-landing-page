@@ -1,10 +1,76 @@
+import { useState } from 'react'
 import { C, F, R } from './theme'
 import CountUp from './CountUp'
 import { spotHandlers, Spot } from './interactions'
 
+const PARTNER_LOGOS = [
+  { name: 'Indosat', src: '/logos/indosat.svg' },
+  { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
+  { name: 'XLSMART', src: '/logos/xlsmart.svg' },
+  { name: 'AXIS', src: '/logos/axis.svg' },
+  { name: 'Acer', src: '/logos/acer.svg' },
+  { name: 'Edifier', src: '/logos/edifier.svg' },
+  { name: 'Gopay Arena', src: '/logos/gopay.svg' },
+  { name: 'Steam', src: '/logos/steam.svg' },
+  { name: 'Tencent', src: '/logos/tencent.svg' },
+  { name: 'Maybank', src: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Logo_wordmark_Bank_Maybank_Indonesia.png' },
+  { name: 'Urban Republic', src: 'https://eraspace.com/logo/urban-republic-desktop.svg' },
+  { name: 'Nemesis', src: 'https://owcdn.net/img/68613fc1eb6be.png' },
+  { name: 'Agres.id', src: 'https://res.cloudinary.com/dbuug9eey/image/upload/v1770717267/header/moxqj1anardjfhe7hwel.svg' },
+  { name: 'FreeFire Indonesia', src: 'https://upload.wikimedia.org/wikipedia/en/c/c5/Logo_of_Garena_Free_Fire.png' },
+  { name: 'ESPL', src: 'https://espl.co/wp-content/uploads/2021/05/ESPL-TM-Logo-Final-2-white-words.png' },
+  { name: 'Garena', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Garena.png' },
+  { name: 'Zepetto', src: 'https://www.zepetto.com/images/common/logo_zepetto.png' },
+  { name: 'Megaxus', src: 'https://www.megaxus.com/v15/imgbar/images/navbar/logo.png' },
+  { name: 'Point Blank', src: 'https://upload.wikimedia.org/wikipedia/en/5/57/Pointblanklogo.jpg' },
+]
+
+function CompactLogoTile({ name, src }) {
+  const [failed, setFailed] = useState(!src)
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className="compact-logo-tile" data-tooltip={name} style={{
+      position: 'relative',
+      overflow: 'hidden',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: '0 0 auto',
+      minWidth: '60px',
+      padding: '8px 10px',
+      background: 'rgba(4,44,83,0.04)',
+      borderRadius: R.card,
+      transition: 'background 0.2s ease',
+      cursor: 'default',
+    }}>
+      {!failed ? (
+        <img
+          src={src}
+          alt={`${name} logo`}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          onError={() => setFailed(true)}
+          style={{ height: '14px', width: 'auto', maxWidth: '100px', objectFit: 'contain', display: 'block', opacity: loaded ? 0.6 : 0, transition: 'opacity 0.3s ease' }}
+        />
+      ) : (
+        <span style={{
+          fontFamily: F.display,
+          fontWeight: 600,
+          fontSize: '10px',
+          letterSpacing: '-0.01em',
+          color: 'rgba(4,44,83,0.4)',
+          whiteSpace: 'nowrap',
+        }}>
+          {name}
+        </span>
+      )}
+    </div>
+  )
+}
+
 // Community proof mosaic: real community/event photography (picsum stand-ins,
 // navy-duotone) interleaved with two real stat tiles. Grounds the headline claim.
-function Photo({ seed, alt, caption, className }) {
+function Photo({ seed, alt, caption = '', className }) {
   return (
     <div className={className} style={{
       position: 'relative',
@@ -158,9 +224,55 @@ export default function Hero() {
             <Stat className="m-e" value={1.2} decimals={1} suffix="M+" label="Monthly visitors" />
           </div>
         </div>
+
+        <div style={{
+          gridColumn: '1 / -1',
+          borderTop: `1px solid ${C.line}`,
+          paddingTop: '24px',
+        }}>
+          <span style={{
+            display: 'block',
+            fontFamily: F.mono,
+            fontSize: '10px',
+            fontWeight: 500,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            color: C.slateLight,
+            marginBottom: '12px',
+          }}>
+            Trusted by innovators in gaming and digital business
+          </span>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
+            {PARTNER_LOGOS.map(b => (
+              <CompactLogoTile key={b.name} name={b.name} src={b.src} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
+        .compact-logo-tile:hover { background: rgba(4,44,83,0.08); }
+        .compact-logo-tile:hover img { opacity: 1 !important; }
+        .compact-logo-tile[data-tooltip]::after {
+          content: attr(data-tooltip);
+          position: absolute;
+          bottom: calc(100% + 6px);
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 4px 8px;
+          background: rgba(0,0,0,0.85);
+          color: #fff;
+          font-family: ${F.body};
+          font-size: 10.5px;
+          font-weight: 500;
+          white-space: nowrap;
+          border-radius: 5px;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.15s ease;
+          z-index: 10;
+        }
+        .compact-logo-tile[data-tooltip]:hover::after { opacity: 1; }
         .btn {
           font-family: ${F.body};
           font-size: 15px;

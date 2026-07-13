@@ -56,7 +56,7 @@ function Scrolly() {
     const io = new IntersectionObserver(
       entries => {
         entries.forEach(e => {
-          if (e.isIntersecting) setActive(Number(e.target.dataset.idx))
+          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.idx))
         })
       },
       { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
@@ -85,7 +85,7 @@ function Scrolly() {
           <li
             key={ms.year}
             data-idx={i}
-            ref={el => (refs.current[i] = el)}
+            ref={el => { refs.current[i] = el; }}
             className={`ms${i === active ? ' is-active' : ''}`}
           >
             <div className="ms-year tnum">{ms.year}</div>

@@ -10,8 +10,15 @@ const trustPoints = [
   'A team that has run this at community scale since 2017.',
 ]
 
-function validate(values) {
-  const errors = {}
+interface FormValues {
+  name: string
+  email: string
+  company: string
+  message: string
+}
+
+function validate(values: FormValues) {
+  const errors: Record<string, string> = {}
   if (!values.name.trim()) errors.name = 'Please tell us your name.'
   if (!values.email.trim()) errors.email = 'A work email lets us reply.'
   else if (!EMAIL_RE.test(values.email.trim())) errors.email = 'That email address looks incomplete.'
@@ -19,7 +26,7 @@ function validate(values) {
   return errors
 }
 
-function Field({ id, label, type = 'text', value, onChange, onBlur, error, textarea, placeholder }) {
+function Field({ id, label, type = 'text', value, onChange, onBlur, error, textarea, placeholder }: { id: string; label: string; type?: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void; onBlur?: () => void; error?: string; textarea?: boolean; placeholder?: string }) {
   const describedBy = error ? `${id}-error` : undefined
   const base = {
     width: '100%',
@@ -53,9 +60,9 @@ function Field({ id, label, type = 'text', value, onChange, onBlur, error, texta
 }
 
 export default function Partner() {
-  const [values, setValues] = useState({ name: '', email: '', company: '', message: '' })
-  const [errors, setErrors] = useState({})
-  const [touched, setTouched] = useState({})
+  const [values, setValues] = useState<FormValues>({ name: '', email: '', company: '', message: '' })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
   const [submitted, setSubmitted] = useState(false)
 
   const setField = key => e => {
@@ -79,7 +86,7 @@ export default function Partner() {
     <section id="partner" className="dot-grid partner-bg" style={{ borderTop: 'none' }}>
       <div style={{ maxWidth: MAX_W, margin: '0 auto', padding: 'clamp(72px, 10vw, 120px) 24px' }}>
         <div className="partner-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
-          <Reveal>
+          <Reveal style={{}}>
             <span style={{ fontFamily: F.mono, fontSize: '12px', fontWeight: 500, color: C.interactive, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
               Partner with us
             </span>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 // Wraps children in a scroll-reveal container. Adds `.is-visible` the first
 // time the element crosses into view, then stops observing so it stays put.
-export default function Reveal({ as: Tag = 'div', delay = 0, className = '', style, children, ...rest }) {
+export default function Reveal({ as: Tag = 'div', delay = 0, className = '', style, children, ...rest }: { as?: React.ElementType; delay?: number; className?: string; style?: React.CSSProperties; children: React.ReactNode }) {
   const ref = useRef(null)
   const [shown, setShown] = useState(false)
 

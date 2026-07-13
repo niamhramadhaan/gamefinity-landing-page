@@ -1,6 +1,4 @@
-@import "tailwindcss";
-
-@theme {
+:root {
   --color-navy: #042C53;
   --color-navy-light: #1a3a6b;
   --color-primary: #185FA5;
@@ -24,7 +22,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px; /* keep anchored sections clear of the fixed navbar */
+  scroll-padding-top: 88px;
 }
 
 body {

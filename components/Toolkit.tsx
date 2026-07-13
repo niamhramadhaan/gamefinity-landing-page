@@ -24,7 +24,7 @@ const ChattoIcon = () => (
   </svg>
 )
 
-function Chips({ items, onDark }) {
+function Chips({ items, onDark = false }) {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
       {items.map(t => (

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import TrustWall from '../components/TrustWall'
 import Toolkit from '../components/Toolkit'
 import GrowthSolutions from '../components/GrowthSolutions'
 import NewsTeaser from '../components/NewsTeaser'
@@ -37,7 +36,6 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
-        <TrustWall />
         <Story />
         <Toolkit />
         <GrowthSolutions />

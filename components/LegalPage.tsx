@@ -17,13 +17,12 @@ export default function LegalPage({ title, updated, children }) {
       <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: C.offWhite }}>
         <header style={{ borderBottom: `1px solid ${C.lineSoft}`, background: C.white }}>
           <div style={{ maxWidth: MAX_W, margin: '0 auto', padding: '0 24px', height: '72px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Link href="/" aria-label="Gamefinity home" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-              <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <rect width="32" height="32" rx="8" fill={C.navy} />
-                <path d="M8 10L14 16L8 22" stroke={C.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M16 22H24" stroke={C.interactive} strokeWidth="2" strokeLinecap="round" />
-              </svg>
-              <span style={{ fontFamily: F.display, fontSize: '18px', fontWeight: 800, color: C.navy, letterSpacing: '-0.02em' }}>Gamefinity</span>
+            <Link href="/" aria-label="Gamefinity home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+              <img
+                src="https://biz.gamefinity.id/assets/website-logo.svg"
+                alt="Gamefinity"
+                style={{ height: '32px', width: 'auto', display: 'block' }}
+              />
             </Link>
             <Link href="/" className="legal-back" style={{ fontFamily: F.body, fontSize: '14px', fontWeight: 600, color: C.navy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '7px' }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">

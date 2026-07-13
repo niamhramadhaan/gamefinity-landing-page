@@ -293,7 +293,6 @@ export default function Navbar() {
           font-weight: 600;
           color: ${C.primary};
           background: rgba(55,138,221,0.08);
-          overflow: hidden;
           white-space: nowrap;
         }
         .nav-link--news:hover { background: rgba(55,138,221,0.14); }
@@ -302,11 +301,14 @@ export default function Navbar() {
           display: inline-flex;
           align-items: center;
         }
-        .news-hover {
+        .news-default {
           position: absolute;
-          left: 14px;
+          left: 0;
+        }
+        .news-hover {
           text-decoration: underline;
           text-underline-offset: 3px;
+          visibility: hidden;
           opacity: 0;
         }
         .news-icon {
@@ -314,7 +316,7 @@ export default function Navbar() {
           transition: transform 0.2s ease;
         }
         .nav-link--news:hover .news-default { opacity: 0; }
-        .nav-link--news:hover .news-hover { opacity: 1; }
+        .nav-link--news:hover .news-hover { visibility: visible; opacity: 1; }
         .nav-link--news:hover .news-icon { transform: translate(1px, -1px); }
         .menu-item {
           display: flex;

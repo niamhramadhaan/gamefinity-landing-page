@@ -101,12 +101,6 @@ function Scrolly() {
             <span className="era-photo-label">{m.caption}</span>
           </div>
           <div className="era-title">{m.title}</div>
-            {m.cta && (
-              <a href={m.cta.href} className="era-cta" target={m.cta.href.startsWith('http') ? '_blank' : undefined} rel={m.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                <span>{m.cta.label}</span>
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </a>
-            )}
         </div>
       </div>
 
@@ -124,7 +118,11 @@ function Scrolly() {
             {ms.cta && (
               <a href={ms.cta.href} className="ms-cta" target={ms.cta.href.startsWith('http') ? '_blank' : undefined} rel={ms.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                 <span>{ms.cta.label}</span>
-                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                {ms.cta.href.startsWith('http') ? (
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" /><line x1="12" y1="18" x2="12" y2="18.01" /></svg>
+                ) : (
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2" /><line x1="10" y1="6" x2="18" y2="6" /><line x1="10" y1="10" x2="18" y2="10" /><line x1="10" y1="14" x2="14" y2="14" /></svg>
+                )}
               </a>
             )}
             <div className="ms-photo-mobile">
@@ -204,16 +202,6 @@ export default function Story() {
         }
         .era-photo-label { position: relative; z-index: 1; font-family: ${F.mono}; font-size: 11px; color: rgba(255,255,255,0.82); line-height: 1.6; }
         .era-title { font-family: ${F.display}; font-size: 18px; font-weight: 600; color: ${C.white}; }
-        .era-cta {
-          display: inline-flex; align-items: center; gap: 4px;
-          margin-top: 12px; font-family: ${F.mono}; font-size: 11px; font-weight: 600;
-          color: ${C.navy}; text-decoration: none;
-          background: ${C.interactive};
-          padding: 4px 10px;
-          border-radius: 4px;
-          transition: background 0.18s ease, transform 0.1s ease;
-        }
-        .era-cta:hover { background: #5ba3e6; transform: translateY(-1px); }
 
         .scrolly-list {
           list-style: none;

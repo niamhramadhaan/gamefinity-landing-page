@@ -24,7 +24,7 @@ const milestones = [
     seed: 'gf-story-2020-topup',
     alt: 'Gamefinity top-up platform dashboard, 2020',
     caption: '2020, 1,000+ digital products live',
-    cta: { label: 'Try top-up', href: 'https://topup.gamefinity.id' },
+    cta: { label: 'Top up', href: 'https://topup.gamefinity.id' },
   },
   {
     year: '2021',
@@ -33,7 +33,7 @@ const milestones = [
     seed: 'gf-story-2021-content',
     alt: 'Gamefinity content team at work, 2021',
     caption: '2021, the content engine kicks in',
-    cta: { label: 'Read the news', href: '#news' },
+    cta: { label: 'Read news', href: '#news' },
   },
   {
     year: '2022',
@@ -102,9 +102,9 @@ function Scrolly() {
           </div>
           <div className="era-title">{m.title}</div>
             {m.cta && (
-              <a href={m.cta.href} className="era-cta">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="3" /><line x1="12" y1="18" x2="12" y2="18.01" /></svg>
+              <a href={m.cta.href} className="era-cta" target={m.cta.href.startsWith('http') ? '_blank' : undefined} rel={m.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                 <span>{m.cta.label}</span>
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
             )}
         </div>
@@ -122,9 +122,9 @@ function Scrolly() {
             <h3 className="ms-title">{ms.title}</h3>
             <p className="ms-body">{ms.body}</p>
             {ms.cta && (
-              <a href={ms.cta.href} className="ms-cta">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2" /><line x1="10" y1="6" x2="18" y2="6" /><line x1="10" y1="10" x2="18" y2="10" /><line x1="10" y1="14" x2="14" y2="14" /></svg>
+              <a href={ms.cta.href} className="ms-cta" target={ms.cta.href.startsWith('http') ? '_blank' : undefined} rel={ms.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
                 <span>{ms.cta.label}</span>
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
             )}
             <div className="ms-photo-mobile">
@@ -209,8 +209,8 @@ export default function Story() {
           margin-top: 12px; font-family: ${F.mono}; font-size: 11px; font-weight: 600;
           color: ${C.navy}; text-decoration: none;
           background: ${C.interactive};
-          padding: 5px 10px;
-          border-radius: 5px;
+          padding: 4px 10px;
+          border-radius: 4px;
           transition: background 0.18s ease, transform 0.1s ease;
         }
         .era-cta:hover { background: #5ba3e6; transform: translateY(-1px); }
@@ -251,8 +251,8 @@ export default function Story() {
           margin-top: 12px; font-family: ${F.mono}; font-size: 11px; font-weight: 600;
           color: ${C.navy}; text-decoration: none;
           background: ${C.interactive};
-          padding: 5px 10px;
-          border-radius: 5px;
+          padding: 4px 10px;
+          border-radius: 4px;
           transition: background 0.18s ease, transform 0.1s ease;
         }
         .ms-cta:hover { background: #5ba3e6; transform: translateY(-1px); }

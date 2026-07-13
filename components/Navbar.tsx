@@ -169,6 +169,7 @@ export default function Navbar() {
             >
               <span className="news-default">Read News</span>
               <span className="news-hover">at blog.gamefinity.id</span>
+              <svg className="news-icon" width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3L3 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </a>
           </div>
 
@@ -297,7 +298,7 @@ export default function Navbar() {
         }
         .nav-link--news:hover { background: rgba(55,138,221,0.14); }
         .news-default, .news-hover {
-          transition: opacity 0.2s ease, transform 0.2s ease;
+          transition: opacity 0.2s ease;
           display: inline-flex;
           align-items: center;
         }
@@ -307,10 +308,14 @@ export default function Navbar() {
           text-decoration: underline;
           text-underline-offset: 3px;
           opacity: 0;
-          transform: translateY(4px);
         }
-        .nav-link--news:hover .news-default { opacity: 0; transform: translateY(-4px); }
-        .nav-link--news:hover .news-hover { opacity: 1; transform: translateY(0); }
+        .news-icon {
+          flex-shrink: 0;
+          transition: transform 0.2s ease;
+        }
+        .nav-link--news:hover .news-default { opacity: 0; }
+        .nav-link--news:hover .news-hover { opacity: 1; }
+        .nav-link--news:hover .news-icon { transform: translate(1px, -1px); }
         .menu-item {
           display: flex;
           flex-direction: column;

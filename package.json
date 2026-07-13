@@ -1,0 +1,23 @@
+{
+  "name": "gamefinity.id-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "autoprefixer": "^10.5.2",
+    "next": "^14.2.35",
+    "postcss": "^8.5.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.3.2"
+  }
+}

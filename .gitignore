@@ -2,3 +2,5 @@ node_modules/
 .next/
 .claude/
 tsconfig.tsbuildinfo
+
+.vercel

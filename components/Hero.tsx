@@ -159,7 +159,7 @@ export default function Hero() {
               textTransform: 'uppercase',
               marginBottom: '24px',
             }}>
-              Indonesia's gaming community
+              Gaming & entertainment across Asia
             </span>
           </div>
 
@@ -174,7 +174,7 @@ export default function Hero() {
             textWrap: 'balance',
             opacity: 0,
           }}>
-            The platform Indonesian gamers{' '}
+            The entertainment engine gamers{' '}
             <span style={{ color: C.primary, fontWeight: 600 }}>already trust.</span>
           </h1>
 
@@ -188,7 +188,7 @@ export default function Hero() {
             maxWidth: '480px',
             opacity: 0,
           }}>
-            Seven years in the market. One integration for any app that wants to keep players engaged.
+            Games, drama, and live chat — one integration to keep your users engaged.
           </p>
 
           <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: 0 }}>
@@ -217,7 +217,7 @@ export default function Hero() {
               seed="gf-hero-campus-tournament"
               alt="A packed campus esports tournament crowd in Indonesia"
             />
-            <Stat className="m-c" value={7} decimals={0} suffix="+ Years" label="Building for Indonesian players" />
+            <Stat className="m-c" value={7} decimals={0} suffix="+ Years" label="Building for gaming communities" />
             <Photo
               className="m-d"
               seed="gf-hero-players-live"

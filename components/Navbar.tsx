@@ -290,33 +290,36 @@ export default function Navbar() {
         .nav-link--highlight:hover { background: rgba(55,138,221,0.14); }
         .nav-link--news {
           position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
           font-weight: 600;
           color: ${C.primary};
           background: rgba(55,138,221,0.08);
           white-space: nowrap;
+          max-width: 150px;
+          transition: background 0.18s ease, max-width 0.3s ease;
         }
-        .nav-link--news:hover { background: rgba(55,138,221,0.14); }
+        .nav-link--news:hover { background: rgba(55,138,221,0.14); max-width: 280px; }
         .news-default, .news-hover {
           transition: opacity 0.2s ease;
           display: inline-flex;
           align-items: center;
         }
-        .news-default {
+        .news-hover {
           position: absolute;
           left: 0;
-        }
-        .news-hover {
           text-decoration: underline;
           text-underline-offset: 3px;
-          visibility: hidden;
           opacity: 0;
+          pointer-events: none;
         }
         .news-icon {
           flex-shrink: 0;
           transition: transform 0.2s ease;
         }
-        .nav-link--news:hover .news-default { opacity: 0; }
-        .nav-link--news:hover .news-hover { visibility: visible; opacity: 1; }
+        .nav-link--news:hover .news-default { opacity: 0; position: absolute; left: 0; pointer-events: none; }
+        .nav-link--news:hover .news-hover { opacity: 1; position: static; pointer-events: auto; }
         .nav-link--news:hover .news-icon { transform: translate(1px, -1px); }
         .menu-item {
           display: flex;

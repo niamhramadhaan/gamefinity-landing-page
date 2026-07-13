@@ -13,8 +13,8 @@ const LogoSVG = () => (
 // On-page destinations, plus the live product subdomains under a dropdown.
 const sectionLinks = [
   { label: 'News', href: '#news', id: 'news' },
-  { label: 'The toolkit', href: '#toolkit', id: 'toolkit' },
   { label: 'Our story', href: '#how-we-got-here', id: 'how-we-got-here' },
+  { label: 'The toolkit', href: '#toolkit', id: 'toolkit' },
 ]
 
 const productLinks = [
@@ -136,7 +136,6 @@ export default function Navbar() {
                       rel="noreferrer"
                     >
                       <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: item.color, flexShrink: 0 }} />
                         <span style={{ fontWeight: 600, color: C.navy }}>{item.label}</span>
                       </span>
                       <span style={{ fontFamily: F.mono, fontSize: '11px', color: C.primary, paddingLeft: '16px' }}>{item.note}</span>
@@ -161,12 +160,15 @@ export default function Navbar() {
             <div style={{ flex: 1 }} />
 
             <a
-              href="#news"
-              className="nav-link nav-link--highlight"
+              href="https://blog.gamefinity.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link nav-link--news"
               aria-current={active === 'news' ? 'true' : undefined}
               data-active={active === 'news' ? 'true' : undefined}
             >
-              News
+              <span className="news-default">Read News</span>
+              <span className="news-hover">at blog.gamefinity.id</span>
             </a>
           </div>
 
@@ -285,6 +287,30 @@ export default function Navbar() {
           background: rgba(55,138,221,0.08);
         }
         .nav-link--highlight:hover { background: rgba(55,138,221,0.14); }
+        .nav-link--news {
+          position: relative;
+          font-weight: 600;
+          color: ${C.primary};
+          background: rgba(55,138,221,0.08);
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .nav-link--news:hover { background: rgba(55,138,221,0.14); }
+        .news-default, .news-hover {
+          transition: opacity 0.2s ease, transform 0.2s ease;
+          display: inline-flex;
+          align-items: center;
+        }
+        .news-hover {
+          position: absolute;
+          left: 14px;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        .nav-link--news:hover .news-default { opacity: 0; transform: translateY(-4px); }
+        .nav-link--news:hover .news-hover { opacity: 1; transform: translateY(0); }
         .menu-item {
           display: flex;
           flex-direction: column;

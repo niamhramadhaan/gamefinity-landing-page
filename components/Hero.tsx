@@ -8,21 +8,25 @@ const PARTNER_LOGOS = [
   { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
   { name: 'XLSMART', src: '/logos/xlsmart.svg' },
   { name: 'AXIS', src: '/logos/axis.svg' },
+  { name: 'Maybank', src: '' },
   { name: 'Acer', src: '/logos/acer.svg' },
   { name: 'Edifier', src: '/logos/edifier.svg' },
+  { name: 'Jungleland', src: '' },
   { name: 'Gopay Arena', src: '/logos/gopay.svg' },
+  { name: 'Teraskota', src: '/logos/teraskota.png' },
+  { name: 'Republic of Games', src: '' },
+  { name: 'Urban Republic', src: '/logos/urbanrepublic.svg' },
+  { name: 'Nemesis', src: '/logos/nemesis.png' },
+  { name: 'Agres.id', src: '/logos/agres.svg' },
+  { name: 'FreeFire Indonesia', src: '/logos/freefire.png' },
+  { name: 'Battle of Guardians', src: '' },
+  { name: 'ESPL', src: '/logos/espl.png' },
   { name: 'Steam', src: '/logos/steam.svg' },
+  { name: 'Garena', src: '' },
   { name: 'Tencent', src: '/logos/tencent.svg' },
-  { name: 'Maybank', src: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Logo_wordmark_Bank_Maybank_Indonesia.png' },
-  { name: 'Urban Republic', src: 'https://eraspace.com/logo/urban-republic-desktop.svg' },
-  { name: 'Nemesis', src: 'https://owcdn.net/img/68613fc1eb6be.png' },
-  { name: 'Agres.id', src: 'https://res.cloudinary.com/dbuug9eey/image/upload/v1770717267/header/moxqj1anardjfhe7hwel.svg' },
-  { name: 'FreeFire Indonesia', src: 'https://upload.wikimedia.org/wikipedia/en/c/c5/Logo_of_Garena_Free_Fire.png' },
-  { name: 'ESPL', src: 'https://espl.co/wp-content/uploads/2021/05/ESPL-TM-Logo-Final-2-white-words.png' },
-  { name: 'Garena', src: 'https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Garena.png' },
-  { name: 'Zepetto', src: 'https://www.zepetto.com/images/common/logo_zepetto.png' },
-  { name: 'Megaxus', src: 'https://www.megaxus.com/v15/imgbar/images/navbar/logo.png' },
-  { name: 'Point Blank', src: 'https://upload.wikimedia.org/wikipedia/en/5/57/Pointblanklogo.jpg' },
+  { name: 'Zepetto', src: '/logos/zepetto.png' },
+  { name: 'Megaxus', src: '/logos/megaxus.png' },
+  { name: 'Point Blank', src: '' },
 ]
 
 function CompactLogoTile({ name, src }) {
@@ -215,7 +219,7 @@ export default function Hero() {
               seed="gf-hero-campus-tournament"
               alt="A packed campus esports tournament crowd in Indonesia"
             />
-            <Stat className="m-c" value={40} decimals={0} suffix="K+" label="Elite Squad members" />
+            <Stat className="m-c" value={9} decimals={0} suffix=" yrs" label="Building for Indonesian players" />
             <Photo
               className="m-d"
               seed="gf-hero-players-live"

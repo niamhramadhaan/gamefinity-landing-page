@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 import PlaceholderImage from './PlaceholderImage'
+import TrustWall from './TrustWall'
 import { C, F, R, MAX_W } from './theme'
 
 const trustPoints = [
@@ -288,6 +289,8 @@ export default function Partner() {
           </div>
         </div>
       </div>
+
+      <TrustWall />
 
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 860px) {

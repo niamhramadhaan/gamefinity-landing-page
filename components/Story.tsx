@@ -60,12 +60,20 @@ const milestones = [
     caption: '2024–2025, Elite Squad goes nationwide',
   },
   {
-    year: '2025–2026',
-    title: 'Content Toolkit launches',
-    body: <>Everything we built for ourselves — {H.brand('Mini Games')}, {H.brand('Mini Cinema')}, and {H.brand('Mini Chatto')} — is now packaged as a content toolkit any platform can embed. No app store, no install friction. Just the engine that grew Indonesia's gaming community, ready to grow yours.</>,
-    seed: 'gf-story-2025-toolkit',
-    alt: 'Content Toolkit launch, 2025',
-    caption: '2025–2026, the toolkit opens up',
+    year: '2025',
+    title: 'MiniGames launches',
+    body: <>The first piece of the toolkit — {H.brand('MiniGames')} — went live. Embeddable games any platform can drop in, no app store needed. The same engine that kept Gamefinity's community engaged, now available to partners.</>,
+    seed: 'gf-story-2025-minigames',
+    alt: 'MiniGames launch, 2025',
+    caption: '2025, MiniGames goes live',
+  },
+  {
+    year: '2026',
+    title: 'MiniCinema launches',
+    body: <>Following MiniGames, {H.brand('MiniCinema')} launched — bringing short-form video and entertainment content into the toolkit. Two products, one embeddable engine, zero install friction.</>,
+    seed: 'gf-story-2026-minicinema',
+    alt: 'MiniCinema launch, 2026',
+    caption: '2026, MiniCinema joins the toolkit',
   },
 ]
 

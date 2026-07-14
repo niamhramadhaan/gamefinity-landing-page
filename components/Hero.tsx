@@ -1,78 +1,10 @@
-import { useState } from 'react'
+
 import { C, F, R } from './theme'
 import CountUp from './CountUp'
 import { spotHandlers, Spot } from './interactions'
 import PlaceholderImage from './PlaceholderImage'
 
-const PARTNER_LOGOS = [
-  { name: 'Indosat', src: '/logos/indosat.svg' },
-  { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
-  { name: 'XLSMART', src: '/logos/xlsmart.svg' },
-  { name: 'AXIS', src: '/logos/axis.svg' },
-  { name: 'Maybank', src: '/logos/maybank.png' },
-  { name: 'Acer', src: '/logos/acer.svg' },
-  { name: 'Edifier', src: '' },
-  { name: 'Jungleland', src: '' },
-  { name: 'Gopay Arena', src: '/logos/gopay.svg' },
-  { name: 'Teraskota', src: '/logos/teraskota.png' },
-  { name: 'Republic of Games', src: '' },
-  { name: 'Urban Republic', src: '/logos/urbanrepublic.svg' },
-  { name: 'Nemesis', src: '/logos/nemesis.png' },
-  { name: 'Agres.id', src: '/logos/agres.svg' },
-  { name: 'FreeFire Indonesia', src: '/logos/freefire.png' },
-  { name: 'Battle of Guardians', src: '' },
-  { name: 'ESPL', src: '/logos/espl.png' },
-  { name: 'Steam', src: '/logos/steam.svg' },
-  { name: 'Garena', src: '/logos/garena.svg' },
-  { name: 'Tencent', src: '/logos/tencent.svg' },
-  { name: 'Zepetto', src: '/logos/zepetto.svg' },
-  { name: 'Megaxus', src: '/logos/megaxus.png' },
-  { name: 'Point Blank', src: '/logos/pointblank.png' },
-]
 
-function CompactLogoTile({ name, src }) {
-  const [failed, setFailed] = useState(!src)
-  return (
-    <div className="compact-logo-tile" data-tooltip={name} style={{
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: '0 0 auto',
-      width: '120px',
-      height: '52px',
-      padding: '12px 16px',
-      background: 'rgba(4,44,83,0.06)',
-      borderRadius: R.card,
-      transition: 'background 0.2s ease',
-      cursor: 'default',
-    }}>
-      {!failed ? (
-        <img
-          src={src}
-          alt={`${name} logo`}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          style={{ height: '28px', width: 'auto', maxWidth: '88px', objectFit: 'contain', display: 'block', opacity: 0.55, transition: 'opacity 0.3s ease' }}
-        />
-      ) : (
-        <span style={{
-          fontFamily: F.display,
-          fontWeight: 600,
-          fontSize: '11px',
-          letterSpacing: '-0.01em',
-          color: 'rgba(4,44,83,0.5)',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          maxWidth: '88px',
-        }}>
-          {name}
-        </span>
-      )}
-    </div>
-  )
-}
 
 // Community proof mosaic: real community/event photography (placeholder stand-ins,
 // navy-duotone) interleaved with two real stat tiles. Grounds the headline claim.
@@ -191,15 +123,39 @@ export default function Hero() {
             A gaming media and creative lab — building the tools that keep players inside your app.
           </p>
 
-          <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', opacity: 0 }}>
-            <a href="#toolkit" className="btn btn--primary">
-              Explore the toolkit
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-            <a href="#how-we-got-here" className="btn btn--secondary">
+          <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', flexDirection: 'column', gap: '14px', opacity: 0 }}>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <a href="#news" className="btn btn--secondary">
+                For Creators
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <a href="#toolkit" className="btn btn--primary">
+                For Business
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+            <a href="#how-we-got-here" style={{
+              fontFamily: F.body,
+              fontSize: '13px',
+              fontWeight: 500,
+              color: C.slateLight,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              transition: 'color 0.15s ease',
+            }}
+              onMouseEnter={e => (e.currentTarget.style.color = C.primary)}
+              onMouseLeave={e => (e.currentTarget.style.color = C.slateLight)}
+            >
               Our story
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </a>
           </div>
         </div>
@@ -227,54 +183,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div style={{
-          gridColumn: '1 / -1',
-          borderTop: `1px solid ${C.line}`,
-          paddingTop: '24px',
-        }}>
-          <span style={{
-            display: 'block',
-            fontFamily: F.mono,
-          fontSize: '12px',
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: C.slateLight,
-            marginBottom: '12px',
-          }}>
-            Trusted by innovators in gaming and digital business
-          </span>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
-            {PARTNER_LOGOS.map(b => (
-              <CompactLogoTile key={b.name} name={b.name} src={b.src} />
-            ))}
-          </div>
-        </div>
+
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .compact-logo-tile:hover { background: rgba(4,44,83,0.1); }
-        .compact-logo-tile:hover img { opacity: 0.85 !important; }
-        .compact-logo-tile[data-tooltip]::after {
-          content: attr(data-tooltip);
-          position: absolute;
-          bottom: calc(100% + 6px);
-          left: 50%;
-          transform: translateX(-50%);
-          padding: 4px 8px;
-          background: rgba(0,0,0,0.85);
-          color: #fff;
-          font-family: ${F.body};
-          font-size: 10.5px;
-          font-weight: 500;
-          white-space: nowrap;
-          border-radius: 5px;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.15s ease;
-          z-index: 10;
-        }
-        .compact-logo-tile[data-tooltip]:hover::after { opacity: 1; }
+
         .btn {
           font-family: ${F.body};
           font-size: 15px;

@@ -183,6 +183,10 @@ body {
 .reveal-delay-2 { transition-delay: 180ms; }
 .reveal-delay-3 { transition-delay: 270ms; }
 .reveal-delay-4 { transition-delay: 360ms; }
+.reveal-delay-5 { transition-delay: 420ms; }
+.reveal-delay-6 { transition-delay: 480ms; }
+.reveal-delay-7 { transition-delay: 540ms; }
+.reveal-delay-8 { transition-delay: 600ms; }
 
 /* Ambient engineered texture (subtle, brand-grade) */
 .dot-grid {

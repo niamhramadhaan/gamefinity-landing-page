@@ -18,9 +18,45 @@ const sectionLinks = [
 ]
 
 const productLinks = [
-  { label: 'Mini Games', href: 'https://mini-games.gamefinity.id', note: '20K+ instant titles', color: '#6ee7b7' },
-  { label: 'Mini Cinema', href: 'https://mini-cinema.gamefinity.id', note: 'bite-size drama', color: '#a78bfa' },
-  { label: 'Mini Chatto', href: 'https://mini-chatto.gamefinity.id', note: 'voice · video · AI', color: '#378ADD' },
+  {
+    label: 'Mini Games',
+    href: 'https://mini-games.gamefinity.id',
+    note: '20K+ instant titles',
+    color: '#6ee7b7',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="6" width="20" height="12" rx="3" />
+        <path d="M8 11H12M10 9V13" />
+        <circle cx="17" cy="12" r="1" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Mini Cinema',
+    href: 'https://mini-cinema.gamefinity.id',
+    note: 'bite-size drama',
+    color: '#a78bfa',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <path d="M10 9L15 12L10 15V9Z" fill="currentColor" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Mini Chatto',
+    href: 'https://mini-chatto.gamefinity.id',
+    note: 'voice · video · AI',
+    color: '#378ADD',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 7C4 5.34 5.34 4 7 4H17C18.66 4 20 5.34 20 7V13C20 14.66 18.66 16 17 16H11L6 20V16C4.9 16 4 15.1 4 14V7Z" />
+        <circle cx="9" cy="10" r="1" fill="currentColor" />
+        <circle cx="12.5" cy="10" r="1" fill="currentColor" />
+        <circle cx="16" cy="10" r="1" fill="currentColor" />
+      </svg>
+    ),
+  },
 ]
 
 export default function Navbar() {
@@ -110,37 +146,55 @@ export default function Navbar() {
               {productsOpen && (
                 <div
                   role="menu"
+                  className="products-dropdown"
                   style={{
                     position: 'absolute',
                     top: 'calc(100% - 8px)',
-                    left: 0,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
                     background: 'rgba(255,255,255,0.95)',
                     backdropFilter: 'blur(12px)',
                     WebkitBackdropFilter: 'blur(12px)',
                     boxShadow: '0 8px 32px rgba(4,44,83,0.12), 0 2px 8px rgba(0,0,0,0.06)',
                     borderRadius: '14px',
-                    padding: '14px 8px 8px',
-                    minWidth: '260px',
+                    padding: '14px',
                   }}
                 >
-                  <div style={{ padding: '8px 14px 6px', fontFamily: F.mono, fontSize: '10px', color: C.slateLight, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  <div style={{ padding: '4px 8px 10px', fontFamily: F.mono, fontSize: '10px', color: C.slateLight, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                     Our products
                   </div>
-                  {productLinks.map(item => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="menu-item"
-                      role="menuitem"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span style={{ fontWeight: 600, color: C.navy }}>{item.label}</span>
-                      </span>
-                      <span style={{ fontFamily: F.mono, fontSize: '11px', color: C.primary, paddingLeft: '16px' }}>{item.note}</span>
-                    </a>
-                  ))}
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    {productLinks.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="product-card"
+                        role="menuitem"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <div style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '10px',
+                          background: `${item.color}15`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: item.color,
+                          marginBottom: '10px',
+                        }}>
+                          {item.icon}
+                        </div>
+                        <span style={{ fontFamily: F.display, fontSize: '13px', fontWeight: 600, color: C.navy, display: 'block' }}>
+                          {item.label}
+                        </span>
+                        <span style={{ fontFamily: F.mono, fontSize: '11px', color: C.primary }}>
+                          {item.note}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -321,18 +375,20 @@ export default function Navbar() {
         .nav-link--news:hover .news-default { opacity: 0; position: absolute; left: 0; pointer-events: none; }
         .nav-link--news:hover .news-hover { opacity: 1; position: static; pointer-events: auto; }
         .nav-link--news:hover .news-icon { transform: translate(1px, -1px); }
-        .menu-item {
+        .product-card {
           display: flex;
           flex-direction: column;
-          gap: 2px;
-          padding: 10px 14px;
+          align-items: flex-start;
+          padding: 16px;
+          min-width: 150px;
           border-radius: 10px;
           font-family: ${F.body};
           font-size: 14px;
           text-decoration: none;
-          transition: background 0.15s ease;
+          transition: background 0.15s ease-out, transform 0.12s ease-out;
         }
-        .menu-item:hover { background: rgba(24,95,165,0.08); }
+        .product-card:hover { background: rgba(24,95,165,0.06); transform: translateY(-1px); }
+        .product-card:active { transform: scale(0.98); }
         .nav-cta {
           font-family: ${F.body};
           font-size: 14px;

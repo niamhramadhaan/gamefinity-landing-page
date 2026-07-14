@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Toolkit from '../components/Toolkit'
-import GrowthSolutions from '../components/GrowthSolutions'
+// import GrowthSolutions from '../components/GrowthSolutions'
 import NewsTeaser from '../components/NewsTeaser'
+import GamefinityStore from '../components/GamefinityStore'
 import Story from '../components/Story'
 import Partner from '../components/Partner'
 import Footer from '../components/Footer'
@@ -36,10 +37,11 @@ export default function Home() {
       <Navbar />
       <main id="main">
         <Hero />
-        <Story />
         <Toolkit />
-        <GrowthSolutions />
+        <Story />
         <NewsTeaser />
+        <GamefinityStore />
+        {/* <GrowthSolutions /> */}
         <Partner />
       </main>
       <Footer />

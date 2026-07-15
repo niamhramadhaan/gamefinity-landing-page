@@ -109,7 +109,7 @@ export default function GamefinityStore() {
             </Reveal>
 
             {/* Stat cards */}
-            <Reveal delay={1} style={{
+            <Reveal delay={1} className="gs-stat-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '12px',
@@ -225,12 +225,15 @@ export default function GamefinityStore() {
           flex-direction: column;
           justify-content: center;
           cursor: default;
-          transition: background 0.18s ease-out, border-color 0.18s ease-out, box-shadow 0.18s ease-out;
+          transition: background 0.18s ease-out, border-color 0.18s ease-out;
         }
-        .gs-stat-card:hover, .gs-stat-active {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(255,255,255,0.18);
-          box-shadow: 0 0 20px rgba(55,138,221,0.08);
+        @media (hover: hover) and (pointer: fine) {
+          .gs-stat-card { transition: background 0.18s ease-out, border-color 0.18s ease-out, box-shadow 0.18s ease-out; }
+          .gs-stat-card:hover, .gs-stat-active {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.18);
+            box-shadow: 0 0 20px rgba(55,138,221,0.08);
+          }
         }
         .gs-pills-wrap {
           position: relative;
@@ -302,6 +305,10 @@ export default function GamefinityStore() {
         .gs-pay-logo:hover[data-tooltip]::after { opacity: 1; }
         @media (max-width: 860px) {
           .gs-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .gs-stat-grid { grid-template-columns: 1fr 1fr !important; }
+          .gs-stat-grid > *:last-child { grid-column: 1 / -1; }
         }
       `}} />
     </section>

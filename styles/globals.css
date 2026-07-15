@@ -13,9 +13,9 @@
   --color-white: #FFFFFF;
   --color-off-white: #F8F7F4;
 
-  --font-display: 'Outfit', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
 * {
@@ -137,10 +137,17 @@ body {
 }
 
 .animate-fade-in-up {
+  opacity: 1;
+  transform: none;
+}
+.reveal-ready .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .animate-fade-in {
+  opacity: 1;
+}
+.reveal-ready .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
@@ -156,7 +163,10 @@ body {
   animation: floatBadge 4s ease-in-out infinite;
 }
 
+.animation-delay-60 { animation-delay: 60ms; }
 .animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-120 { animation-delay: 120ms; }
+.animation-delay-180 { animation-delay: 180ms; }
 .animation-delay-200 { animation-delay: 200ms; }
 .animation-delay-300 { animation-delay: 300ms; }
 .animation-delay-400 { animation-delay: 400ms; }
@@ -167,15 +177,19 @@ body {
 .animation-delay-1000 { animation-delay: 1000ms; }
 .animation-delay-1200 { animation-delay: 1200ms; }
 
-/* Scroll-reveal — GPU-friendly (transform + opacity), toggled by IntersectionObserver */
+/* Scroll-reveal — content visible by default, animation gated behind .reveal-ready */
 .reveal {
+  opacity: 1;
+  transform: none;
+  will-change: opacity, transform;
+}
+.reveal-ready .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
 }
-.reveal.is-visible {
+.reveal-ready .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
@@ -222,12 +236,20 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .spotlight > .spot { display: none; }
+  .reveal,
   .animate-fade-in-up,
   .animate-fade-in,
   .animate-draw-line,
   .animate-node-pulse,
-  .animate-float-badge,
-  .reveal {
+  .animate-float-badge {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal-ready .reveal,
+  .reveal-ready .animate-fade-in-up,
+  .reveal-ready .animate-fade-in {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

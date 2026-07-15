@@ -213,7 +213,7 @@ export default function Partner() {
             </Reveal>
 
             <Reveal delay={2}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+              <div className="partner-product-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
                 {products.map((p, i) => (
                   <button
                     key={p.name}
@@ -230,8 +230,7 @@ export default function Partner() {
                       borderRadius: R.card,
                       cursor: 'pointer',
                       textAlign: 'center',
-                      transition: 'border-color 0.18s ease, background 0.18s ease, transform 0.1s ease',
-                      transform: active === i ? 'translateY(-2px)' : 'none',
+                      transition: 'border-color 0.18s ease, background 0.18s ease',
                     }}
                   >
                     {p.icon}
@@ -295,6 +294,14 @@ export default function Partner() {
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 860px) {
           .partner-grid { grid-template-columns: 1fr !important; gap: 44px !important; }
+        }
+        @media (max-width: 480px) {
+          .partner-product-grid { grid-template-columns: 1fr !important; }
+          .partner-product-grid button { min-height: 44px; padding: 16px 14px; }
+        }
+        @media (hover: hover) and (pointer: fine) {
+          .partner-product-grid button { transition: border-color 0.18s ease, background 0.18s ease, transform 0.1s ease; }
+          .partner-product-grid button:hover { transform: translateY(-2px); }
         }
         #partner details[open] summary svg { transform: rotate(180deg); }
         #partner details summary::-webkit-details-marker { display: none; }

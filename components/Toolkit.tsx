@@ -333,8 +333,11 @@ export default function Toolkit() {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .lift { transition: transform 0.18s ease, border-color 0.18s ease; }
-        .lift:hover { transform: translateY(-4px); }
+        .lift { transition: border-color 0.18s ease; }
+        @media (hover: hover) and (pointer: fine) {
+          .lift { transition: transform 0.18s ease, border-color 0.18s ease; }
+          .lift:hover { transform: translateY(-4px); }
+        }
         @media (max-width: 860px) {
           .feat-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
           .pair-grid { grid-template-columns: 1fr !important; }

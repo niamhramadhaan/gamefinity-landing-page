@@ -119,7 +119,7 @@ export default function Footer() {
               <br />
               <span className="text-[#0262a7] font-black">built for gamers.</span>
             </h3>
-            <p className="text-slate-600 text-[11px] font-medium leading-relaxed max-w-[280px] mt-4">
+            <p className="text-slate-600 text-[12px] font-medium leading-relaxed max-w-[280px] mt-4">
               PT Bangun Media Integra
               <br />
               Jl. Palem Raya Sektor 1.3 BJ No. 29, BSD City, Tangerang Selatan, Banten, 15318
@@ -148,9 +148,9 @@ export default function Footer() {
         </div>
 
         {/* Right Card */}
-        <div className="bg-[#f0f1f5] rounded-[28px] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col justify-between relative mt-12 lg:mt-0">
-          {/* Floating CTA Badge */}
-          <div className="absolute -top-[55px] right-6 lg:right-10 z-20 flex flex-col items-end gap-1">
+        <div className="bg-[#f0f1f5] rounded-[28px] p-8 lg:p-10 shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col justify-between relative mt-8 lg:mt-0">
+          {/* Floating CTA Badge — hidden on mobile to prevent overlap */}
+          <div className="absolute -top-[55px] right-6 lg:right-10 z-20 hidden lg:flex flex-col items-end gap-1">
             <a
               href="#partner"
               className="w-[110px] h-[110px] flex items-center justify-center relative group cursor-pointer transition-transform"

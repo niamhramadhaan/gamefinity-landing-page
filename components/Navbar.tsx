@@ -12,9 +12,9 @@ const LogoSVG = () => (
 
 // On-page destinations, plus the live product subdomains under a dropdown.
 const sectionLinks = [
-  { label: 'News', href: '#news', id: 'news' },
-  { label: 'Our story', href: '#how-we-got-here', id: 'how-we-got-here' },
   { label: 'The toolkit', href: '#toolkit', id: 'toolkit' },
+  { label: 'Our story', href: '#how-we-got-here', id: 'how-we-got-here' },
+  { label: 'News', href: '#news', id: 'news' },
 ]
 
 const productLinks = [

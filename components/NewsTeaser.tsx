@@ -58,11 +58,11 @@ export default function NewsTeaser() {
   }
 
   return (
-    <section id="news" className="circuit-bg" style={{ backgroundColor: C.navy, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+    <section id="news" className="news-bg" style={{ backgroundColor: C.offWhite, borderTop: `1px solid ${C.line}` }}>
       <div style={{ maxWidth: MAX_W, margin: '0 auto', padding: 'clamp(72px, 10vw, 120px) 24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 'clamp(40px, 5vw, 56px)' }}>
           <Reveal style={{ maxWidth: '640px' }}>
-            <span style={{ fontFamily: F.mono, fontSize: '12px', fontWeight: 500, color: C.interactive, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            <span style={{ fontFamily: F.mono, fontSize: '12px', fontWeight: 500, color: C.primary, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
               From the blog
             </span>
             <h2 style={{
@@ -71,32 +71,32 @@ export default function NewsTeaser() {
               fontWeight: 500,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
-              color: C.white,
+              color: C.navy,
               margin: '18px 0 0',
               textWrap: 'balance',
             }}>
               Fresh from the scene.
             </h2>
-            <p style={{ fontFamily: F.body, fontSize: '15px', lineHeight: 1.5, color: C.onDark, marginTop: '12px', maxWidth: '44ch' }}>
+            <p style={{ fontFamily: F.body, fontSize: '15px', lineHeight: 1.5, color: C.slate, marginTop: '12px', maxWidth: '44ch' }}>
               Esports, anime, pop culture, and game guides — updated weekly.
             </p>
           </Reveal>
           <Reveal delay={1} className="news-arrows" style={{ display: 'flex', gap: '8px', flexShrink: 0, paddingBottom: '4px' }}>
             <button onClick={() => scroll('left')} aria-label="Scroll left" style={{
-              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out', padding: 0,
+              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.line}`, background: 'transparent', color: C.navy, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out', padding: 0,
             }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.lineOnDark }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(4,44,83,0.06)'; e.currentTarget.style.borderColor = 'rgba(4,44,83,0.2)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.line }}
               onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)' }}
               onMouseUp={e => { e.currentTarget.style.transform = 'none' }}
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
             <button onClick={() => scroll('right')} aria-label="Scroll right" style={{
-              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.lineOnDark}`, background: 'transparent', color: C.white, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out', padding: 0,
+              width: 44, height: 44, borderRadius: '50%', border: `1.5px solid ${C.line}`, background: 'transparent', color: C.navy, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out', padding: 0,
             }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.lineOnDark }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(4,44,83,0.06)'; e.currentTarget.style.borderColor = 'rgba(4,44,83,0.2)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.line }}
               onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)' }}
               onMouseUp={e => { e.currentTarget.style.transform = 'none' }}
             >
@@ -119,8 +119,8 @@ export default function NewsTeaser() {
             <Reveal key={a.href} delay={i} style={{ borderRadius: R.card, overflow: 'hidden', flex: '0 0 340px', scrollSnapAlign: 'start' }}>
               <a href={a.href} target="_blank" rel="noopener noreferrer" className="news-card" style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
                 <div style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: `1px solid ${C.lineOnDark}`,
+                  background: C.white,
+                  border: `1px solid ${C.line}`,
                   borderRadius: R.card,
                   overflow: 'hidden',
                   transition: 'transform 0.18s ease-out, border-color 0.18s ease-out',
@@ -128,7 +128,7 @@ export default function NewsTeaser() {
                   display: 'flex',
                   flexDirection: 'column',
                 }}>
-                  <div style={{ aspectRatio: '16/10', overflow: 'hidden', background: 'rgba(255,255,255,0.04)', position: 'relative' }}>
+                  <div style={{ aspectRatio: '16/10', overflow: 'hidden', background: 'rgba(4,44,83,0.04)', position: 'relative' }}>
                     <img
                       src={a.img}
                       alt=""
@@ -170,7 +170,7 @@ export default function NewsTeaser() {
                       }}>
                         {a.tag}
                       </span>
-                      <span style={{ fontFamily: F.body, fontSize: '12px', color: C.onDarkFaint }}>
+                      <span style={{ fontFamily: F.body, fontSize: '12px', color: C.slateLight }}>
                         {a.date}
                       </span>
                     </div>
@@ -178,7 +178,7 @@ export default function NewsTeaser() {
                       fontFamily: F.display,
                       fontSize: '16px',
                       fontWeight: 600,
-                      color: C.white,
+                      color: C.navy,
                       margin: 0,
                       lineHeight: 1.3,
                       letterSpacing: '-0.01em',
@@ -190,7 +190,7 @@ export default function NewsTeaser() {
                       fontFamily: F.body,
                       fontSize: '13px',
                       fontWeight: 600,
-                      color: C.interactive,
+                      color: C.primary,
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
@@ -223,16 +223,16 @@ export default function NewsTeaser() {
               fontFamily: F.body,
               fontSize: '15px',
               fontWeight: 600,
-              color: C.white,
+              color: C.navy,
               background: 'transparent',
-              border: `1.5px solid ${C.lineOnDark}`,
+              border: `1.5px solid ${C.line}`,
               borderRadius: R.btn,
               padding: '12px 28px',
               textDecoration: 'none',
               transition: 'background 0.18s ease-out, border-color 0.18s ease-out, transform 0.16s ease-out',
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.lineOnDark }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(4,44,83,0.06)'; e.currentTarget.style.borderColor = 'rgba(4,44,83,0.2)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = C.line }}
             onMouseDown={e => { e.currentTarget.style.transform = 'scale(0.97)' }}
             onMouseUp={e => { e.currentTarget.style.transform = 'none' }}
           >
@@ -245,6 +245,10 @@ export default function NewsTeaser() {
       </div>
 
       <style dangerouslySetInnerHTML={{ __html: `
+        .news-bg {
+          background-image: radial-gradient(rgba(4,44,83,0.04) 1px, transparent 1px);
+          background-size: 20px 20px;
+        }
         .news-scroll::-webkit-scrollbar { display: none; }
         .news-scroll { scrollbar-width: none; }
         .news-card:hover .news-img { transform: scale(1.05); }
@@ -253,13 +257,13 @@ export default function NewsTeaser() {
         .news-fade-left, .news-fade-right {
           position: absolute; top: 0; bottom: 8px; width: 48px; pointer-events: none; z-index: 2;
         }
-        .news-fade-left { left: 0; background: linear-gradient(to right, ${C.navy}, transparent); }
-        .news-fade-right { right: 0; background: linear-gradient(to left, ${C.navy}, transparent); }
+        .news-fade-left { left: 0; background: linear-gradient(to right, ${C.offWhite}, transparent); }
+        .news-fade-right { right: 0; background: linear-gradient(to left, ${C.offWhite}, transparent); }
         @media (max-width: 640px) {
           .news-arrows { display: none !important; }
           .news-scroll { gap: 14px; }
           .news-scroll > * { flex: 0 0 280px !important; }
-          .news-fade-left, .news-fade-right { width: 24px; }
+          .news-fade-left, .news-fade-right { width: 48px; }
         }
       ` }} />
     </section>

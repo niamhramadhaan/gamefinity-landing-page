@@ -77,40 +77,35 @@ export default function Hero() {
         width: '100%',
       }}>
         <div className="hero-text">
-          <div className="animate-fade-in-up" style={{ opacity: 0 }}>
+          <div className="animate-fade-in-up">
             <span style={{
-              display: 'inline-block',
-              fontFamily: F.mono,
-              fontSize: '11px',
-              fontWeight: 500,
+              display: 'block',
+              fontFamily: F.body,
+              fontSize: '13px',
+              fontWeight: 600,
               color: C.primary,
-              background: 'rgba(24,95,165,0.09)',
-              borderRadius: R.tag,
-              padding: '6px 12px',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              marginBottom: '24px',
+              letterSpacing: '0.02em',
+              marginBottom: '20px',
             }}>
               Gaming & entertainment across Asia
             </span>
           </div>
 
-          <h1 className="animate-fade-in-up animation-delay-100" style={{
+          <h1 className="animate-fade-in-up animation-delay-60" style={{
             fontFamily: F.display,
-            fontSize: 'clamp(30px, 3.7vw, 46px)',
+            fontSize: 'clamp(28px, 3.7vw, 46px)',
             fontWeight: 500,
             lineHeight: 1.14,
             letterSpacing: '-0.02em',
             color: C.navy,
             marginBottom: '22px',
             textWrap: 'balance',
-            opacity: 0,
           }}>
             The entertainment engine gamers{' '}
-            <span style={{ color: C.primary, fontWeight: 600 }}>already trust.</span>
+            <span style={{ fontStyle: 'italic', fontWeight: 600 }}>already trust.</span>
           </h1>
 
-          <p className="animate-fade-in-up animation-delay-200" style={{
+          <p className="animate-fade-in-up animation-delay-120" style={{
             fontFamily: F.body,
             fontSize: '18px',
             fontWeight: 400,
@@ -118,41 +113,19 @@ export default function Hero() {
             color: C.slate,
             marginBottom: '36px',
             maxWidth: '480px',
-            opacity: 0,
           }}>
             A gaming media and creative lab — building the tools that keep players inside your app.
           </p>
 
-          <div className="animate-fade-in-up animation-delay-300" style={{ display: 'flex', flexDirection: 'column', gap: '14px', opacity: 0 }}>
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <a href="#news" className="btn btn--secondary">
-                For Creators
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a href="#toolkit" className="btn btn--primary">
-                For Business
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-            <a href="#how-we-got-here" style={{
-              fontFamily: F.body,
-              fontSize: '13px',
-              fontWeight: 500,
-              color: C.slateLight,
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px',
-              transition: 'color 0.15s ease',
-            }}
-              onMouseEnter={e => (e.currentTarget.style.color = C.primary)}
-              onMouseLeave={e => (e.currentTarget.style.color = C.slateLight)}
-            >
-              Our story
+          <div className="animate-fade-in-up animation-delay-180" style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <a href="#toolkit" className="btn btn--primary">
+              For Business
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <a href="#news" className="hero-text-link">
+              For Creators
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -160,7 +133,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-visual animate-fade-in animation-delay-400" style={{ opacity: 0 }}>
+        <div className="hero-visual animate-fade-in animation-delay-200">
           <div className="hero-mosaic">
             <Photo
               className="m-a"
@@ -203,9 +176,18 @@ export default function Hero() {
         .btn--primary { color: ${C.white}; background: ${C.primary}; }
         .btn--primary:hover { background: ${C.navy}; }
         .btn--primary:active { transform: scale(0.98); }
-        .btn--secondary { color: ${C.primary}; background: transparent; border: 1.5px solid ${C.primary}; }
-        .btn--secondary:hover { background: rgba(24,95,165,0.06); }
-        .btn--secondary:active { transform: scale(0.98); }
+        .hero-text-link {
+          font-family: ${F.body};
+          font-size: 15px;
+          font-weight: 600;
+          color: ${C.primary};
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          transition: color 0.18s ease;
+        }
+        .hero-text-link:hover { color: ${C.navy}; }
 
         .hero-mosaic {
           display: grid;
@@ -225,6 +207,7 @@ export default function Hero() {
           .hero-mosaic { grid-template-rows: repeat(3, 150px); }
         }
         @media (max-width: 480px) {
+          .hero-text h1 { font-size: 28px; line-height: 1.15; }
           .hero-mosaic { grid-template-rows: 148px 128px 128px; }
           .hero-mosaic .m-a { grid-column: 1 / -1; grid-row: 1; }
           .hero-mosaic .m-b { grid-column: 1; grid-row: 2; }

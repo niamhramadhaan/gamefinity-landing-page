@@ -7,6 +7,7 @@ import NewsTeaser from '../components/NewsTeaser'
 import GamefinityStore from '../components/GamefinityStore'
 import Story from '../components/Story'
 import Partner from '../components/Partner'
+import FloatingBlog from '../components/FloatingBlog'
 import Footer from '../components/Footer'
 
 export default function Home() {
@@ -38,12 +39,13 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Toolkit />
-        <Story />
-        <NewsTeaser />
         <GamefinityStore />
+        <NewsTeaser />
+        <Story />
         {/* <GrowthSolutions /> */}
         <Partner />
       </main>
+      <FloatingBlog />
       <Footer />
     </>
   )

@@ -4,51 +4,49 @@ import CountUp from './CountUp'
 import ProductGallery from './ProductGallery'
 import { C, F, R, MAX_W } from './theme'
 
-const FINLOGO_CDN = 'https://cdn.jsdelivr.net/npm/idn-finlogos@2/dist/icons'
-
 type HoveredStat = 'products' | 'payments' | null
 
 const PRODUCTS = [
-  { name: 'Mobile Legends', slug: '' },
-  { name: 'Free Fire', slug: '' },
-  { name: 'PUBG Mobile', slug: '' },
-  { name: 'Steam', slug: 'steam' },
-  { name: 'Google Play', slug: 'google-play' },
-  { name: 'Netflix', slug: 'netflix' },
-  { name: 'Spotify', slug: 'spotify' },
-  { name: 'Telkomsel', slug: 'telkomsel' },
-  { name: 'XL', slug: 'xl' },
-  { name: 'Axis', slug: 'axis' },
-  { name: 'Smartfren', slug: 'smartfren' },
-  { name: 'Tri', slug: 'tri' },
+  { name: 'Mobile Legends', src: '/logos/mobile-legends.svg' },
+  { name: 'Free Fire', src: '/logos/freefire.png' },
+  { name: 'PUBG Mobile', src: '/logos/pubg-mobile.svg' },
+  { name: 'Steam', src: '/logos/steam.svg' },
+  { name: 'Google Play', src: '/logos/google-play.svg' },
+  { name: 'Netflix', src: '/logos/netflix.svg' },
+  { name: 'Spotify', src: '/logos/spotify.svg' },
+  { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
+  { name: 'XL', src: '/logos/xlsmart.svg' },
+  { name: 'Axis', src: '/logos/axis.svg' },
+  { name: 'Smartfren', src: '/logos/smartfren.svg' },
+  { name: 'Tri', src: '/logos/tri.svg' },
 ]
 
 const PAYMENTS = [
-  { name: 'DANA', slug: 'dana' },
-  { name: 'OVO', slug: 'ovo' },
-  { name: 'GoPay', slug: 'gopay' },
-  { name: 'ShopeePay', slug: 'shopeepay' },
-  { name: 'QRIS', slug: 'qris' },
-  { name: 'Telkomsel', slug: 'telkomsel' },
-  { name: 'Indosat', slug: '' },
-  { name: 'XL', slug: 'xl' },
-  { name: 'Axis', slug: 'axis' },
-  { name: 'Smartfren', slug: 'smartfren' },
-  { name: 'Tri', slug: 'tri' },
-  { name: 'BCA', slug: 'bca' },
-  { name: 'BRI', slug: 'bri' },
-  { name: 'BSI', slug: 'bsi' },
-  { name: 'Mandiri', slug: 'mandiri' },
-  { name: 'Permata', slug: 'permata' },
+  { name: 'DANA', src: '/logos/dana.svg' },
+  { name: 'OVO', src: '/logos/ovo.svg' },
+  { name: 'GoPay', src: '/logos/gopay.svg' },
+  { name: 'ShopeePay', src: '/logos/shopeepay.svg' },
+  { name: 'QRIS', src: '/logos/qris.svg' },
+  { name: 'Telkomsel', src: '/logos/telkomsel.svg' },
+  { name: 'Indosat', src: '/logos/indosat.svg' },
+  { name: 'XL', src: '/logos/xlsmart.svg' },
+  { name: 'Axis', src: '/logos/axis.svg' },
+  { name: 'Smartfren', src: '/logos/smartfren.svg' },
+  { name: 'Tri', src: '/logos/tri.svg' },
+  { name: 'BCA', src: '/logos/bca.svg' },
+  { name: 'BRI', src: '/logos/bri.svg' },
+  { name: 'BSI', src: '/logos/bsi.svg' },
+  { name: 'Mandiri', src: '/logos/mandiri.svg' },
+  { name: 'Permata', src: '/logos/permata.svg' },
 ]
 
-function LogoPill({ name, slug }: { name: string; slug: string }) {
-  const [failed, setFailed] = useState(!slug)
+function LogoPill({ name, src }: { name: string; src: string }) {
+  const [failed, setFailed] = useState(!src)
   return (
     <div className="gs-pay-logo" data-tooltip={name}>
       {!failed ? (
         <img
-          src={`${FINLOGO_CDN}/${slug}.svg`}
+          src={src}
           alt={`${name} logo`}
           loading="lazy"
           onError={() => setFailed(true)}
@@ -161,13 +159,13 @@ export default function GamefinityStore() {
                 {/* Payment pills — visible by default */}
                 <div className={`gs-pills-layer ${showProducts ? 'gs-pills-hidden' : 'gs-pills-visible'}`}>
                   {PAYMENTS.map((p) => (
-                    <LogoPill key={p.name} name={p.name} slug={p.slug} />
+                    <LogoPill key={p.name} name={p.name} src={p.src} />
                   ))}
                 </div>
                 {/* Product pills — hidden by default */}
                 <div className={`gs-pills-layer ${showProducts ? 'gs-pills-visible' : 'gs-pills-hidden'}`}>
                   {PRODUCTS.map((p) => (
-                    <LogoPill key={p.name} name={p.name} slug={p.slug} />
+                    <LogoPill key={p.name} name={p.name} src={p.src} />
                   ))}
                 </div>
               </div>

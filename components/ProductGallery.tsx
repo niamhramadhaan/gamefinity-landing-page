@@ -1,22 +1,18 @@
 import { useEffect, useRef } from 'react'
 import { C, F } from './theme'
 
-const PRODUCT_SEEDS = [
-  'gf-store-mlbb',
-  'gf-store-freefire',
-  'gf-store-pubg',
-  'gf-store-steam',
-  'gf-store-googleplay',
-  'gf-store-xl',
-]
-
-const PRODUCT_LABELS = [
-  'Mobile Legends',
-  'Free Fire',
-  'PUBG Mobile',
-  'Steam Wallet',
-  'Google Play',
-  'XL',
+const PRODUCTS = [
+  { seed: 'gf-store-mlbb', label: 'Mobile Legends', image: '/logos/mobile-legends.svg' },
+  { seed: 'gf-store-freefire', label: 'Free Fire', image: '/logos/freefire.png' },
+  { seed: 'gf-store-pubg', label: 'PUBG Mobile', image: '/logos/pubg-mobile.svg' },
+  { seed: 'gf-store-steam', label: 'Steam Wallet', image: '/logos/steam.svg' },
+  { seed: 'gf-store-googleplay', label: 'Google Play', image: '/logos/google-play.svg' },
+  { seed: 'gf-store-xl', label: 'XL', image: '/logos/xlsmart.svg' },
+  { seed: 'gf-store-roblox', label: 'Roblox', image: '/logos/roblox.svg' },
+  { seed: 'gf-store-playstation', label: 'PlayStation', image: '/logos/playstation.svg' },
+  { seed: 'gf-store-pointblank', label: 'Point Blank', image: '/logos/pointblank.svg' },
+  { seed: 'gf-store-codm', label: 'Call of Duty Mobile', image: '/logos/codm.svg' },
+  { seed: 'gf-store-riot', label: 'Riot Cash', image: '/logos/riot-games.svg' },
 ]
 
 const SIZES = [
@@ -34,34 +30,11 @@ function pick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function createPlaceholderSvg(seed: string, label: string): string {
+function gradientFor(seed: string): string {
   const hash = seed.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0)
   const angle = Math.abs(hash) % 60 + 130
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="280" height="210" viewBox="0 0 280 210">
-      <defs>
-        <linearGradient id="bg-${seed}" x1="0%" y1="0%" x2="100%" y2="100%" gradientTransform="rotate(${angle})">
-          <stop offset="0%" stop-color="${C.navy}"/>
-          <stop offset="55%" stop-color="#0c3a6b"/>
-          <stop offset="100%" stop-color="${C.primary}"/>
-        </linearGradient>
-      </defs>
-      <rect width="280" height="210" fill="url(#bg-${seed})"/>
-      <g opacity="0.06">
-        ${Array.from({ length: 15 }, (_, i) => {
-          const x = 10 + (i % 5) * 55
-          const y = 10 + Math.floor(i / 5) * 55
-          return `<circle cx="${x}" cy="${y}" r="1" fill="white"/>`
-        }).join('')}
-      </g>
-      <g transform="translate(140, 95)" opacity="0.25">
-        <rect x="-18" y="-14" width="36" height="28" rx="4" fill="none" stroke="white" stroke-width="1.2"/>
-        <circle cx="0" cy="0" r="7" fill="none" stroke="white" stroke-width="1.2"/>
-      </g>
-      <text x="140" y="145" text-anchor="middle" font-family="${F.display}, sans-serif" font-size="13" font-weight="600" fill="white" opacity="0.7">${label}</text>
-    </svg>
-  `.trim()
-  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+  return `radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px), ` +
+    `linear-gradient(${angle}deg, ${C.navy} 0%, #0c3a6b 55%, ${C.primary} 100%)`
 }
 
 export default function ProductGallery() {
@@ -102,8 +75,7 @@ export default function ProductGallery() {
         const container = containerRef.current
         if (!container) return
 
-        const seed = PRODUCT_SEEDS[seedIdxRef.current % PRODUCT_SEEDS.length]
-        const label = PRODUCT_LABELS[seedIdxRef.current % PRODUCT_LABELS.length]
+        const { seed, label, image } = PRODUCTS[seedIdxRef.current % PRODUCTS.length]
         seedIdxRef.current++
 
         const shape = pick(SIZES)
@@ -157,16 +129,52 @@ export default function ProductGallery() {
           pointer-events: none;
           will-change: transform, opacity;
           translate: -50% -50%;
-          background: ${C.navy};
+          background: ${gradientFor(seed)};
+          background-size: 18px 18px, 100% 100%;
           opacity: 0;
+        `
+
+        const inner = document.createElement('div')
+        inner.style.cssText = `
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 10%;
         `
 
         const imgEl = document.createElement('img')
         imgEl.alt = label
-        imgEl.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;'
-        imgEl.src = createPlaceholderSvg(seed, label)
+        imgEl.loading = 'lazy'
+        imgEl.style.cssText = `
+          max-width: 70%;
+          max-height: 55%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+        `
+        imgEl.src = image
 
-        el.appendChild(imgEl)
+        const labelEl = document.createElement('span')
+        labelEl.textContent = label
+        labelEl.style.cssText = `
+          font-family: ${F.display}, sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          color: white;
+          opacity: 0.75;
+          letter-spacing: 0.01em;
+          text-align: center;
+          white-space: nowrap;
+        `
+
+        inner.appendChild(imgEl)
+        inner.appendChild(labelEl)
+        el.appendChild(inner)
         container.appendChild(el)
 
         const entryDur = rand(1.8, 2.4)
